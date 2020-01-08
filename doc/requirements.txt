@@ -1,2 +1,7 @@
-Flask
-Jinja2
+###### Requirements without Version Specifiers ######
+#
+###### Requirements with Version Specifiers ######
+#   See https://www.python.org/dev/peps/pep-0440/#version-specifiers
+Flask >= 0.12.2          #
+Jinja2 >= 2.10            # Minimum version 2.10
+#
