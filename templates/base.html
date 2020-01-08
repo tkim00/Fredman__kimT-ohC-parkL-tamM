@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+{% block head %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css')}}">
+  <title>{% block title %}{% endblock %}</title>
+</head>
+{% endblock %}
+
+<body>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <sub>
+    {% block buttons %}{% endblock %}
+  </sub>
+  {% block footer %}
+  <footer class="footer">
+    <div class="container pt-3">
+      <p class="text-muted my-0">Taejoon Kim | Connor Oh | Leia Park | Manfred Tan</p>
+      <p class="text-muted my-0">Copyright &copy; 2020</p>
+      <p class="text-muted my-0" style="text-decoration-line: none;">
+        <a href="https://raw.githubusercontent.com/juntaolei/flask_oauth2/master/flask_oauth2/util/oauth2.py">OAuth2 Source
+          Code</a>
+      </p>
+    </div>
+  </footer>
+  {% endblock %}
+  {% block script %}
+  {% endblock %}
+</body>
+
+</html>
