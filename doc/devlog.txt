@@ -1,2 +1,6 @@
 taejoonK -- 2020-01-08 13:45
-Updated design doc by adding database tables and editting the sitemap and gameplay
+Updated design doc by adding database tables and editing the sitemap and gameplay
+connorO -- 2020-01-08 14:45
+-Made the base templates for all the html files
+connorO -- 2020-01-09 14:37
+-Started the login page
