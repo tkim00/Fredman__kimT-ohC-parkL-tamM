@@ -7,9 +7,9 @@ from flask import Flask, render_template, request, session, url_for, redirect
 import sqlite3
 import os
 import random
-from database import setupDB
-import urllib.request as urlrequest
-from urllib.request import urlopen, Request
+#from database import setupDB
+#import urllib.request as urlrequest
+#from urllib.request import urlopen, Request
 import json
 
 ##################################################################################
@@ -29,10 +29,25 @@ def home():
     #Redirect to create character game
     return(redirect(url_for("difficulty")))
 
-@app.route("/")
-def difficulty():
-    #Choose difficulty
-    
+@app.route("/d")
+def difficulty(): #Choose difficulty
+    print( "Choose your difficulty: \n1. Easy\n2. Medium\n3. Hard")
+    response = askUser()
+    print("RESPONSE: " + str(response))
+    #return(redirect(url_for("shop")))
+
+# HELPER METHODS!!!!!!
+
+def askUser():
+    data = raw_input("Input number: ")
+    try:
+        num = int(data)
+        #print(num)
+        return num
+    except:
+        return askUser()
+
+
 
 def changeMoney():
     return None
@@ -52,7 +67,9 @@ def changeBandages():
 def changeWeapons():
     return None
 
+difficulty()
 
-if __name__ == "__main__":
-	app.debug = True
-	app.run(host="0.0.0.0", port = '5000', debug = True)
+
+#if __name__ == "__main__":
+#    app.debug = True
+#    app.run()
