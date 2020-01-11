@@ -6,6 +6,7 @@
 from flask import Flask, render_template, request, session, url_for, redirect
 import sqlite3
 import os
+from os import system
 import random
 #from database import setupDB
 #import urllib.request as urlrequest
@@ -21,16 +22,16 @@ app.secret_key = os.urandom(32) #generates secret key for session
 
 # BANDAGES, FOOD, FUEL, MONEY, SHIP PARTS, WEAPONS
 #     0       1    2      3        4         5
-userEquipment = [0,0,0,0,0,0]
+userInventory = [0,0,0,0,0,0]
 
 # DIFFICULTY, NAME, CREW0, CREW1, CREW2,
 #     0        1      2      3      4
 userData = [0,"name","crew0","crew1","crew2"]
 
 # USER SETTINGS
-#  FOOD, SPEED,
-#   0      1
-userSettings = [2, 2]
+#  FOOD(TXT), SPEED(TXT), FOOD(FACTOR), SPEED(FACTOR)
+#   0             1            2            3
+userSettings = ["Normal","Steady", 2, 2]
 
 # userJourney
 #  DAY, TRAVELED, PLANET 1, PLANET 2, PLANET 3, PLANET 4, FINISH
@@ -53,20 +54,20 @@ def chooseYourDifficulty(): #Choose difficulty
     response = askUser()
     print("RESPONSE: " + str(response))
     global userData
-    global userEquipment
+    global userInventory
     if (response == 0):
         print("Easy Mode Selected")
-        userEquipment[3] = 3000
+        userInventory[3] = 3000
     elif (response == 1):
         print("Medium Mode Selected")
-        userEquipment[3] = 2000
+        userInventory[3] = 2000
     elif (response == 2):
         print("Hard Mode Selected")
-        userEquipment[3] = 1000
+        userInventory[3] = 1000
     else:
         return difficulty()
     userData[0] = response
-    print(userEquipment)
+    print(userInventory)
     print(userData)
     #return(redirect(url_for("chooseYourName")))
 
@@ -98,7 +99,8 @@ def chooseYourCrew():
 
 @app.route("/shop")
 def shop(message):
-    global userEquipment
+    system("cls")
+    global userInventory
     print("What would you like to do?")
     print("0. Buy Ship Parts         1. Sell Ship Parts")
     print("2. Buy Fuel               3. Sell Fuel")
@@ -107,58 +109,59 @@ def shop(message):
     print("8. Buy Weapons            9. Sell Weapons")
     print("10. Continue\n")
     print(message)
-    print("Balance: " + str(userEquipment[3]))
-    print("Ship parts: " + str(userEquipment[4]))
-    print("Fuel: " + str(userEquipment[2]))
-    print("Food: " + str(userEquipment[1]))
-    print("Bandages: " + str(userEquipment[0]))
-    print("Weapons: " + str(userEquipment[5]) + "\n")
+    print("Balance: " + str(userInventory[3]))
+    print("Ship parts: " + str(userInventory[4]))
+    print("Fuel: " + str(userInventory[2]))
+    print("Food: " + str(userInventory[1]))
+    print("Bandages: " + str(userInventory[0]))
+    print("Weapons: " + str(userInventory[5]) + "\n")
 
     response = askUser()
+    if (response == 10):
+        game()
     if (response % 2):
         #print("ODD NUMBER")
         if (response == 1): #SHIP PARTS
-            if (userEquipment[4] < 50): return shop("Invalid request. Ship parts too low.")
-            userEquipment[3] += 50
-            userEquipment[4] -= 50
+            if (userInventory[4] < 50): return shop("Invalid request. Ship parts too low.")
+            userInventory[3] += 50
+            userInventory[4] -= 50
         if (response == 3): #FUEL
-            if (userEquipment[2] < 50): return shop("Invalid request. Fuel too low.")
-            userEquipment[3] += 50
-            userEquipment[2] -= 50
+            if (userInventory[2] < 50): return shop("Invalid request. Fuel too low.")
+            userInventory[3] += 50
+            userInventory[2] -= 50
         if (response == 5): #FOOD
-            if (userEquipment[1] < 50): return shop("Invalid request. Food too low.")
-            userEquipment[3] += 50
-            userEquipment[1] -= 50
+            if (userInventory[1] < 50): return shop("Invalid request. Food too low.")
+            userInventory[3] += 50
+            userInventory[1] -= 50
         if (response == 7): #Bandages
-            if (userEquipment[0] < 50): return shop("Invalid request. Bandages too low.")
-            userEquipment[3] += 50
-            userEquipment[0] -= 50
+            if (userInventory[0] < 50): return shop("Invalid request. Bandages too low.")
+            userInventory[3] += 50
+            userInventory[0] -= 50
         if (response == 9): #WEAPONS
-            if (userEquipment[5] < 50): return shop("Invalid request. Weapons too low.")
-            userEquipment[3] += 50
-            userEquipment[5] -= 50
+            if (userInventory[5] < 50): return shop("Invalid request. Weapons too low.")
+            userInventory[3] += 50
+            userInventory[5] -= 50
     else:
         #print("EVEN NUMBER")
-        if (userEquipment[3] < 50):
+        if (userInventory[3] < 50):
             return shop("Invalid request. Funds too low.")
         if (response == 0): #SHIP PARTS
-            userEquipment[3] -= 50
-            userEquipment[4] += 50
+            userInventory[3] -= 50
+            userInventory[4] += 50
         if (response == 2): #FUEL
-            userEquipment[3] -= 50
-            userEquipment[2] += 50
+            userInventory[3] -= 50
+            userInventory[2] += 50
         if (response == 4): #FOOD
-            userEquipment[3] -= 50
-            userEquipment[1] += 50
+            userInventory[3] -= 50
+            userInventory[1] += 50
         if (response == 6):
-            userEquipment[3] -= 50
-            userEquipment[0] += 50
+            userInventory[3] -= 50
+            userInventory[0] += 50
         if (response == 8):
-            userEquipment[3] -= 50
-            userEquipment[5] += 50
-        if (response == 10):
-            print("continue")
-    print(userEquipment)
+            userInventory[3] -= 50
+            userInventory[5] += 50
+
+    #print(userInventory)
     return shop("")
 
 ############################################################################
@@ -169,6 +172,7 @@ def shop(message):
 #   0      1         2         3         4        5         6
 @app.route("/game")
 def game():
+    system("cls")
     print("Day " + str(userJourney[0]))
     #PLANET 0
     if (userJourney[0] == userJourney[2]):
@@ -202,11 +206,56 @@ def encounter():
     return game()
 
 def planet():
-    print("Arrived at planet!\n0. Continue")
+    print("Arrived at planet!\n0. Shop")
     response = askUser()
     while (response != 0):
         response = askUser()
     userJourney[0] += 1
+    return shop("")
+
+# BANDAGES, FOOD, FUEL, MONEY, SHIP PARTS, WEAPONS
+#     0       1    2      3        4         5
+def inventory():
+    system("cls")
+    print("Current Inventory:")
+    print("Bandages: " + str(userInventory[0]))
+    print("Food: " + str(userInventory[1]))
+    print("Fuel: " + str(userInventory[2]))
+    print("Money: " + str(userInventory[3]))
+    print("Ship Parts: " + str(userInventory[4]))
+    print("Weapons: " + str(userInventory[5]) + "\n")
+    print("0. Continue\n")
+    response = askUser()
+    while (response != 0):
+        return inventory()
+    return game()
+
+# USER SETTINGS
+#  FOOD(TXT), SPEED(TXT), FOOD(FACTOR), SPEED(FACTOR)
+#   0             1            2            3
+def settings():
+    system("cls")
+    print("Current Settings:")
+    print("Food: " + userSettings[0])
+    print("Speed: " + userSettings[1] + "\n")
+    print("0. Meager   1. Normal     2. Banquet")
+    print("3. Slow     4. Steady     5. Fast\n")
+    print("6. Continue\n")
+    response = askUser()
+    while (response != 6):
+        if (response == 0):
+            userSettings[0] = "Meager"
+        if (response == 1):
+            userSettings[0] = "Normal"
+        if (response == 2):
+            userSettings[0] = "Banquet"
+        if (response == 3):
+            userSettings[1] = "Slow"
+        if (response == 4):
+            userSettings[1] = "Steady"
+        if (response == 5):
+            userSettings[1] = "Fast"
+        return settings()
     return game()
 
 ############################################################################
@@ -243,7 +292,7 @@ def changeWeapons():
     return None
 
 
-game()
+inventory()
 
 #if __name__ == "__main__":
 #    app.debug = True

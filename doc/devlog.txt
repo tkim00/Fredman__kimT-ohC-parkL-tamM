@@ -9,3 +9,27 @@ connorO -- 2020-01-08 14:45
 
 taejoonK -- 2020-01-08 13:45
 Updated design doc by adding database tables and editting the sitemap and gameplay
+
+tanM -- 2020-01-10 20:31
+Worked on game setup pages:
+0. Player first chooses difficulty, ranging from easy to hard. This determines
+the amount of money the player starts with.
+1. Player chooses their character. For now, they will only be able to
+make their name.
+2. Player is redirected to the shop, where they can purchase and sell supplies.
+There are error messages if they do not have the sufficient amount to complete the
+action.
+Afterwards, the player starts the game. The basics of the setup pages are complete.
+We will focus on the game itself, and if we have more time we will update them.
+
+tanM -- 2020-01-11 12:42
+Main backbone of game completed.
+- Progresses through one day at a time.
+- After certain days, player will reach planet and have a different interaction.
+Our next goals are:
+- factor in player settings (how much food they want to use, how fast they go)
+- add character stats
+- implement encounters
+
+tanM -- 2020-01-11 18:15
+Added pages for settings and inventory
