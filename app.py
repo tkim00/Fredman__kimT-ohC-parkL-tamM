@@ -27,6 +27,21 @@ userEquipment = [0,0,0,0,0,0]
 #     0        1      2      3      4
 userData = [0,"name","crew0","crew1","crew2"]
 
+# USER SETTINGS
+#  FOOD, SPEED,
+#   0      1
+userSettings = [2, 2]
+
+# userJourney
+#  DAY, TRAVELED, PLANET 1, PLANET 2, PLANET 3, PLANET 4, FINISH
+#   0      1         2         3         4        5         6
+userJourney = [0,0,5,15,25,35,50]
+
+
+############################################################################
+############################################################################
+# GAME SETUP
+
 @app.route("/")
 def home():
     #Redirect to create character game
@@ -146,6 +161,53 @@ def shop(message):
     print(userEquipment)
     return shop("")
 
+############################################################################
+############################################################################
+# PLAY GAME
+# userJourney
+#  DAY, TRAVELED, PLANET 0, PLANET 1, PLANET 2, PLANET 3, FINISH
+#   0      1         2         3         4        5         6
+@app.route("/game")
+def game():
+    print("Day " + str(userJourney[0]))
+    #PLANET 0
+    if (userJourney[0] == userJourney[2]):
+        print("PLANET 0")
+        planet()
+    #PLANET 1
+    if (userJourney[0] == userJourney[3]):
+        print("PLANET 1")
+        planet()
+    #PLANET 2
+    if (userJourney[0] == userJourney[4]):
+        print("PLANET 2")
+        planet()
+    #PLANET 3
+    if (userJourney[0] == userJourney[5]):
+        print("PLANET 3")
+        planet()
+    #FINISH
+    if (userJourney[0] == userJourney[6]):
+        print("Congratulations! You have finished the game")
+        exit()
+    encounter()
+    return None
+
+def encounter():
+    print("Nothing happened.\n0. Continue")
+    response = askUser()
+    while (response != 0):
+        response = askUser()
+    userJourney[0] += 1
+    return game()
+
+def planet():
+    print("Arrived at planet!\n0. Continue")
+    response = askUser()
+    while (response != 0):
+        response = askUser()
+    userJourney[0] += 1
+    return game()
 
 ############################################################################
 ############################################################################
@@ -181,7 +243,7 @@ def changeWeapons():
     return None
 
 
-shop("")
+game()
 
 #if __name__ == "__main__":
 #    app.debug = True
