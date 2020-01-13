@@ -41,3 +41,8 @@ Connected setup to game. Rudimentary game completed.
 To add:
 - Random encounters
 - Crew status
+
+tanM -- 2020-01-12 21:27
+Fixed shop and added crew status. Game is fully functional, but very one dimensional.
+We need to add random encounters, which should be easy. We also need to link up the
+game to HTML, which may prove problematic.
