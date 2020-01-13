@@ -254,16 +254,16 @@ def exampleEncounter():
 
 
 def planet():
-    print("Arrived at planet!\n0. Shop\n1. Inventory\n2. Crew Status\n3. Settings")
+    print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings\n4. Shop")
     response = askUser()
     while (response != 0):
         if (response == 1): inventory()
         if (response == 2): status()
         if (response == 3): settings()
-        if (response == 4): shop("")
+        if (response == 4): shop("Welcome to Connor's Shop! What would you like to do?")
         system("cls")
         print("Day " + str(userJourney[0]))
-        print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings")
+        print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings\n4. Shop")
         response = askUser()
 
 
