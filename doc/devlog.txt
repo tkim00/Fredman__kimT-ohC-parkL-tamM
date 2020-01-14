@@ -46,3 +46,13 @@ tanM -- 2020-01-12 21:27
 Fixed shop and added crew status. Game is fully functional, but very one dimensional.
 We need to add random encounters, which should be easy. We also need to link up the
 game to HTML, which may prove problematic.
+
+parkL -- 2020-01-13 14:20
+Added python file that creates database containing initially four tables
+Added actual database
+- "situations" table filled in, partially complete
+- "userencounters" table filled in, partially complete
+
+tanM -- 2020-01-13 19:13
+Started connecting databases to game. Planning to store user data about game in order to
+create save files. Also need to connect to HTML.
