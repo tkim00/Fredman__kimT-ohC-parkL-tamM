@@ -54,7 +54,15 @@ passedEncounter = True
 @app.route("/")
 def home():
     #Redirect to create character game
-    return(redirect(url_for("chooseYourDifficulty")))
+    return(redirect(url_for("login")))
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+@app.route("/signup")
+def signup():
+    return render_template("signup.html")
 
 @app.route("/difficulty")
 def chooseYourDifficulty(): #Choose difficulty
