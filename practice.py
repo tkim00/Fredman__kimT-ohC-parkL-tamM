@@ -8,8 +8,7 @@ import sqlite3
 import os
 from os import system
 import random
-import DBMethods
-#from database import setupDB
+import ultimate
 #import urllib.request as urlrequest
 #from urllib.request import urlopen, Request
 import json
@@ -17,7 +16,7 @@ import json
 ##################################################################################
 app = Flask(__name__)
 app.secret_key = os.urandom(32) #generates secret key for session
-DB_FILE="ultimate.db"
+#DB_FILE="database/databases.db"
 
 ##################################################################################
 
@@ -25,9 +24,31 @@ DB_FILE="ultimate.db"
 #     0       1    2      3        4         5
 userInventory = [100,100,0,100,100,100]
 
+def changeMoney():
+    return None
+
+def changeFood():
+    return None
+
+def changeFuel():
+    return None
+
+def changeShipParts():
+    return None
+
+def changeBandages():
+    return None
+
+def changeWeapons():
+    return None
+
+
+
 # DIFFICULTY, NAME, CREW0, CREW1, CREW2,
 #     0        1      2      3      4
 userData = [0,"name","crew0","crew1","crew2"]
+
+
 
 # USER SETTINGS
 #  FOOD(TXT), SPEED(TXT), FOOD(LVL), SPEED(LVL)
@@ -55,15 +76,7 @@ passedEncounter = True
 @app.route("/")
 def home():
     #Redirect to create character game
-    return(redirect(url_for("login")))
-
-@app.route("/login")
-def login():
-    return render_template("login.html")
-
-@app.route("/signup")
-def signup():
-    return render_template("signup.html")
+    return(redirect(url_for("chooseYourDifficulty")))
 
 @app.route("/difficulty")
 def chooseYourDifficulty(): #Choose difficulty
@@ -224,6 +237,7 @@ def game():
         print("Congratulations! You have finished the game")
         exit()
         #return endScreen()
+
     #ENCOUNTER
     if (passedEncounter == False):
         passedEncounter = True
@@ -252,22 +266,7 @@ def game():
     return game()
 
 def encounter():
-
-
-
-
-    gotEncounter = DBMethods.getTableData('userencounters')
-    system("cls")
-    print("Day " + str(userJourney[0]))
-    char = userData[random.randint(1,4)]
-    print(char + " " + gotEncounter[1])
-    print("0. Continue")
-    response = askUser()
-    while (response != 0):
-        response = askUser()
-    print("GO ONTO GAME")
-    #print(DBMethods.getTableData('userencounters'))
-    #return exampleEncounter()
+    return exampleEncounter()
 
 def exampleEncounter():
     print("Nothing happened today.\n0. Ok\n")
@@ -445,37 +444,8 @@ def askUser():
     except:
         return askUser()
 
-def save():
-    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
-    c = db.cursor()               #facilitate db ops
-    userStuff = "INSERT INTO userStuff (id,username,password,bandages ,food ,fuel ,money ,shipParts ,weapons ,day ,difficulty ,foodSetting ,speedSetting ,foodFactor ,speedFactor) VALUES (0,\'man\',\'fred\',0,0,0,0,0,0,0,\'difficulty\',\'foodSetting\',\'speedSetting\',0,0)"
-    #userteamTable = "INSERT INTO teams (id,name,crew0,crew1,crew2,nameStat
 
-    c.execute(userStuff)
-    db.commit()
-    db.close()
-    return None
-
-def changeMoney():
-    return None
-
-def changeFood():
-    return None
-
-def changeFuel():
-    return None
-
-def changeShipParts():
-    return None
-
-def changeBandages():
-    return None
-
-def changeWeapons():
-    return None
-
-
-encounter()
+chooseYourDifficulty()
 
 #if __name__ == "__main__":
 #    app.debug = True

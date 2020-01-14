@@ -1,16 +1,33 @@
-taejoonK -- 2020-01-10 14:16
-Edited the README file to include all of the requirements.
+manfredT -- 2020-01-12 21:27
+Fixed shop and added crew status. Game is fully functional, but very one dimensional.
+We need to add random encounters, which should be easy. We also need to link up the
+game to HTML, which may prove problematic.
 
-connorO -- 2020-01-09 14:37
--Started the login page
+connorO -- 2020-01-12 01:30
+Created the homescreen and will be waiting for a briefing on game code by Mnafred to get
+the display correct.
 
-connorO -- 2020-01-08 14:45
--Made the base templates for all the html files
+manfredT -- 2020-01-12 01:01
+Connected setup to game. Rudimentary game completed.
+To add:
+- Random encounters
+- Crew status
 
-taejoonK -- 2020-01-08 13:45
-Updated design doc by adding database tables and editting the sitemap and gameplay
+manfredT -- 2020-01-11 18:15
+Added pages for settings and inventory. User can check their inventory and see
+how much of each item they have. They can change the speed they travel and the
+amount of food they consume per day.
 
-tanM -- 2020-01-10 20:31
+manfredT -- 2020-01-11 12:42
+Main backbone of game completed.
+- Progresses through one day at a time.
+- After certain days, player will reach planet and have a different interaction.
+Our next goals are:
+- factor in player settings (how much food they want to use, how fast they go)
+- add character stats
+- implement encounters
+
+manfredT -- 2020-01-10 20:31
 Worked on game setup pages:
 0. Player first chooses difficulty, ranging from easy to hard. This determines
 the amount of money the player starts with.
@@ -22,37 +39,17 @@ action.
 Afterwards, the player starts the game. The basics of the setup pages are complete.
 We will focus on the game itself, and if we have more time we will update them.
 
-tanM -- 2020-01-11 12:42
-Main backbone of game completed.
-- Progresses through one day at a time.
-- After certain days, player will reach planet and have a different interaction.
-Our next goals are:
-- factor in player settings (how much food they want to use, how fast they go)
-- add character stats
-- implement encounters
-
-tanM -- 2020-01-11 18:15
-Added pages for settings and inventory. User can check their inventory and see
-how much of each item they have. They can change the speed they travel and the
-amount of food they consume per day.
-
-tanM -- 2020-01-12 01:01
-Connected setup to game. Rudimentary game completed.
-To add:
-- Random encounters
-- Crew status
-
-tanM -- 2020-01-12 21:27
+taejoonK -- 2020-01-10 14:16tanM -- 2020-01-12 21:27
 Fixed shop and added crew status. Game is fully functional, but very one dimensional.
 We need to add random encounters, which should be easy. We also need to link up the
 game to HTML, which may prove problematic.
+Edited the README file to include all of the requirements.
 
-parkL -- 2020-01-13 14:20
-Added python file that creates database containing initially four tables
-Added actual database
-- "situations" table filled in, partially complete
-- "userencounters" table filled in, partially complete
+connorO -- 2020-01-09 14:37
+-Started the login page
 
-tanM -- 2020-01-13 19:13
-Started connecting databases to game. Planning to store user data about game in order to
-create save files. Also need to connect to HTML.
+connorO -- 2020-01-08 14:45
+-Made the base templates for all the html files
+
+taejoonK -- 2020-01-08 13:45
+Updated design doc by adding database tables and editting the sitemap and gameplay
