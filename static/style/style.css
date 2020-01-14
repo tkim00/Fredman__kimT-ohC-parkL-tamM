@@ -5,6 +5,7 @@ html {
 
 body {
   margin-bottom: 15%;
+  background-color: #0E2E47
 }
 
 .list-group.list-group-root {
@@ -22,7 +23,7 @@ body {
 }
 
 .list-group.list-group-root > .list-group-item:first-child {
-  border-top-width: 0;
+  border-top-width: 0;111D26
 }
 
 .list-group.list-group-root > .list-group > .list-group-item {
@@ -40,7 +41,7 @@ body {
   height: 10%;
   display: flex;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: #345773;
 }
 
 .screen {
