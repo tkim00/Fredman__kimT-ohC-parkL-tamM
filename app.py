@@ -16,7 +16,7 @@ import json
 ##################################################################################
 app = Flask(__name__)
 app.secret_key = os.urandom(32) #generates secret key for session
-#DB_FILE="database/databases.db"
+DB_FILE="ultimate.db"
 
 ##################################################################################
 
@@ -421,7 +421,16 @@ def askUser():
     except:
         return askUser()
 
+def save():
+    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+    c = db.cursor()               #facilitate db ops
+    userStuff = "INSERT INTO userStuff (id,username,password,bandages ,food ,fuel ,money ,shipParts ,weapons ,day ,difficulty ,foodSetting ,speedSetting ,foodFactor ,speedFactor) VALUES (0,\'man\',\'fred\',0,0,0,0,0,0,0,\'difficulty\',\'foodSetting\',\'speedSetting\',0,0)"
+    #userteamTable = "INSERT INTO teams (id,name,crew0,crew1,crew2,nameStat
 
+    c.execute(userStuff)
+    db.commit()
+    db.close()
+    return None
 
 def changeMoney():
     return None
@@ -442,7 +451,7 @@ def changeWeapons():
     return None
 
 
-chooseYourDifficulty()
+save()
 
 #if __name__ == "__main__":
 #    app.debug = True

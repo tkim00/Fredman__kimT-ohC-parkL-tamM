@@ -46,3 +46,7 @@ tanM -- 2020-01-12 21:27
 Fixed shop and added crew status. Game is fully functional, but very one dimensional.
 We need to add random encounters, which should be easy. We also need to link up the
 game to HTML, which may prove problematic.
+
+tanM -- 2020-01-13 19:13
+Started connecting databases to game. Planning to store user data about game in order to
+create save files. Also need to connect to HTML.
