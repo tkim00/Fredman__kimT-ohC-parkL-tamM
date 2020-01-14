@@ -16,6 +16,10 @@ app.secret_key = os.urandom(32) #generates secret key for session
 
 @app.route("/")
 def main():
+    return render_template('homescreen.html')
+
+@app.route("/game")
+def game():
     return render_template('gamescreen.html')
 
 if __name__ == "__main__":
