@@ -81,13 +81,14 @@ def home():
         return redirect(url_for("main"))
     return(redirect(url_for("login")))
 
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=['GET','POST'])
 def login():
-    if('loginsub' in request.form):
-        print(request.form)
-        session['username'] = request.form["username"]
-        session['password'] = request.form["password"]
-        return redirect(url_for("main"))
+    if request.method == 'POST':
+        if('loginsub' in request.form):
+            print(request.form)
+            session['username'] = request.form["username"]
+            session['password'] = request.form["password"]
+            return redirect(url_for("main"))
     return render_template("login.html")
 
 @app.route("/signup")
