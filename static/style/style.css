@@ -11,7 +11,10 @@ body {
   background-color: #FFFFFB;
 }
 
-
+.progress {
+  margin: 20px;
+  padding: 20px;
+}
 
 .footer {
   position: absolute;
