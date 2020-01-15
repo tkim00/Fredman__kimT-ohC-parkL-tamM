@@ -16,6 +16,13 @@ c = db.cursor()               #facilitate db ops
 #       4 BLOCK = user's game data
 #       5 BLOCK = user settings
 
+usermainTable = """ CREATE TABLE userStuff (
+
+          username TEXT,
+          password BLOB
+
+          );"""
+
 userTable = """ CREATE TABLE userStuff (
 
           id INTEGER,
@@ -30,7 +37,7 @@ userTable = """ CREATE TABLE userStuff (
           shipParts INTEGER,
           weapons INTEGER,
           
-          day INTEGER,
+          distance INTEGER,
 
           difficulty TEXT,
           foodSetting TEXT,
@@ -73,26 +80,28 @@ userteamTable = """ CREATE TABLE teams (
 
 #    TABLE BREAKDOWN
 #        CRITERIA  = first check if criteria is True
-#                       else, go to next encounter
-#        PROB      = once criteria is True, if prob is True
-#                       else, go to next encounter
+#                       else, go to next random encounter
 #        ENCOUNTER = attach crewmember name in front
 #        RESULT    = change crewmember status
 
 """
-ex.   criteria                |   prob   |   encounter          |   result
-      foodSetting == "Meager"     0.3        gets cannibalized      dead
-      speedSetting == "Fast"      0.4        is exhausted           exhausted
-      bandages <= 300             0.2        gets pneumonia         sick
+ex.   criteria                |   encounter          |   result
+      foodSetting == "Meager"     gets cannibalized      dead
+      speedSetting == "Fast"      is exhausted           exhausted
+      health <= 30               gets pneumonia         sick
+      
 CRITERIA: foodSetting {Meader, Normal, Banquet}
           speedSetting {Slow, Steady, Fast}
-          bandages, shipParts
+          hunger
+          energy
+          health
+          shipHealth
+          
 """
 
 userencounterTable = """ CREATE TABLE userencounters (
 
           criteria BLOB,
-          prob REAL,
           encounter TEXT,
           result TEXT
           
@@ -104,27 +113,26 @@ userencounterTable = """ CREATE TABLE userencounters (
 # SITUATIONS TABLE
 
 #    TABLE BREAKDOWN
-#        PROB      = integer, choose randomly from range (0,x)
 #        SITUATION = print out text
 #        RESULT    = change game inventory
 
 """
-ex.   prob   |   situation                                            |   result
-      1          The crew encountered a mysterious box. It explodes!      bandages, -200
-      2          The starship got attacked by a space squid!              shipParts, -30
+ex.      situation                                            |   result
+         The crew encountered a mysterious box. It explodes!      bandages, -200
+         The starship got attacked by a space squid!              shipParts, -30
 """
 
 situationTable = """ CREATE TABLE situations (
 
-          prob INTEGER,
           situation TEXT,
           result TEXT
           
           );"""
 #######################################
 
-c.execute(userTable)
-c.execute(userteamTable)
+#c.execute(userTable)
+#c.execute(userteamTable)
+c.execute(usermainTable)
 c.execute(userencounterTable)
 c.execute(situationTable)
 
