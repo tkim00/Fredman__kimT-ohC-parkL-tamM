@@ -66,6 +66,8 @@ def start():
 
 @app.route("/logout")
 def logout():
+    session.pop('username')
+    session.pop('password')
     return redirect(url_for('login'))
 
 @app.route("/crewstats")
@@ -85,7 +87,7 @@ def home():
 def login():
     if request.method == 'POST':
         if('loginsub' in request.form):
-            print(request.form)
+            # print(request.form)
             session['username'] = request.form["username"]
             session['password'] = request.form["password"]
             return redirect(url_for("main"))
@@ -93,6 +95,12 @@ def login():
 
 @app.route("/signup")
 def signup():
+    if request.method == 'POST':
+        if('signsub' in request.form):
+            # print(request.form)
+            session['username'] = request.form["username"]
+            session['password'] = request.form["password"]
+            return redirect(url_for("main"))
     return render_template("signup.html")
 
 @app.route("/difficulty")
