@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block screen %}
-<div class="jumbotron jumbotron-fluid text-center" style="color: black;">
+<div class="bg-dark jumbotron jumbotron-fluid text-center text-white">
   <div class="container">
-    <h1 class="display-4">Space Trail</h1>
-    <p class="lead">Copyright &copy; Fredman 2020</p>
-    <hr class="my-4">
-    <form action="/game" method="GET">
-      <button class="btn btn-sm btn-outline-primary mt-3 mr-3" type="submit">Play</button>
-    </form>
+      <h1 class="display-4">Space Trail</h1>
+      <p class="lead">Copyright &copy; Fredman 2020</p>
+      <hr class="my-4">
+      <form action="/game" method="GET">
+        <button class="btn btn-sm btn-outline-primary mt-3 mr-3" type="submit">Play</button>
+      </form>
   </div>
 </div>
 {% endblock %}

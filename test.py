@@ -22,6 +22,9 @@ def main():
 def game():
     return render_template('gamescreen.html')
 
+@app.route("/logout")
+def logout():
+    return render_template('login.html')
 if __name__ == "__main__":
    app.debug = True
    app.run()

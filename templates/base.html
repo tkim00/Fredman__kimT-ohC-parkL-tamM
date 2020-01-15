@@ -16,6 +16,11 @@
 
 {% block body %}
 <body>
+  {% block header %}
+  <header style="padding-bottom: 120px;">
+
+  </header>
+  {% endblock %}
   <main>
     {% block screen %} {% endblock %}
   </main>
@@ -23,7 +28,7 @@
   <sub>
     {% block text %}{% endblock %}
   </sub>
-  
+
   <sub>
     {% block buttons %}{% endblock %}
   </sub>

@@ -6,11 +6,9 @@ html {
 body {
   margin-top: 15%;
   margin-bottom: 15%;
-  background-color: #0E2E47
-}
-
-.gamescreen {
-  background-color: #82FFFB;
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: #0E2E47;
 }
 
 .footer {
