@@ -20,8 +20,8 @@ def getTableData(table, command):
 #    2. get easy visual of DB list
 def visualList(getStuff):
      for i in getStuff:
-          print i
-     print "number of objects in list: " + str(len(getStuff))
+          print (i)
+     print ("number of objects in list: " + str(len(getStuff)))
 
 
 
@@ -92,4 +92,3 @@ def getSituations():
 
 # TEST
 visualList(getLowShipHealth())
-
