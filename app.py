@@ -52,14 +52,14 @@ passedEncounter = True
 ############################################################################
 # GAME SETUP
 
-@app.route("/home")
+@app.route("/home", methods=["GET"])
 def main():
     if('username' in session and 'password' in session):
         return render_template('homescreen.html')
     return(redirect(url_for("login")))
 
 @app.route("/start")
-def game():
+def start():
     if('username' in session and 'password' in session):
         return render_template('gamescreen.html')
     return(redirect(url_for("login")))
@@ -81,8 +81,13 @@ def home():
         return redirect(url_for("main"))
     return(redirect(url_for("login")))
 
-@app.route("/login")
+@app.route("/login", methods=["GET"])
 def login():
+    if('loginsub' in request.args):
+        print(request.args)
+        session['username'] = request.args["username"]
+        session['password'] = request.args["password"]
+        return redirect(url_for("main"))
     return render_template("login.html")
 
 @app.route("/signup")
@@ -275,23 +280,23 @@ def game():
 
     return game()
 
-def encounter():
-
-
-
-
-    gotEncounter = DBMethods.getTableData('userencounters')
-    system("cls")
-    print("Day " + str(userJourney[0]))
-    char = userData[random.randint(1,4)]
-    print(char + " " + gotEncounter[1])
-    print("0. Continue")
-    response = askUser()
-    while (response != 0):
-        response = askUser()
-    print("GO ONTO GAME")
-    #print(DBMethods.getTableData('userencounters'))
-    #return exampleEncounter()
+# def encounter():
+#
+#
+#
+#
+#     gotEncounter = DBMethods.getTableData('userencounters')
+#     system("cls")
+#     print("Day " + str(userJourney[0]))
+#     char = userData[random.randint(1,4)]
+#     print(char + " " + gotEncounter[1])
+#     print("0. Continue")
+#     response = askUser()
+#     while (response != 0):
+#         response = askUser()
+#     print("GO ONTO GAME")
+#     #print(DBMethods.getTableData('userencounters'))
+#     #return exampleEncounter()
 
 def exampleEncounter():
     print("Nothing happened today.\n0. Ok\n")
@@ -499,7 +504,7 @@ def changeWeapons():
     return None
 
 
-encounter()
+#encounter()
 
 if __name__ == "__main__":
     app.debug = True

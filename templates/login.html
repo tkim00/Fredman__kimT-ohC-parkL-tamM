@@ -2,15 +2,30 @@
 
 {% block title %}Log In{% endblock %}
 
-{% block body %}
-<body>
-  <h1> Login Page </h1>
-  <form action = "/home" method="GET">
-    Username:<br>
-    <input type="text" name="username"><br>
-    Password:<br>
-    <input type="text" name="password"><br>
-    <input type="submit" value="Submit" name="submitlogin">
-  </form>
-</body>
+{% block content %}
+<div class = "container">
+  <div class="row">
+    <div class="row-sm">
+    </div>
+    <div class="row-sm">
+      <form action='/login', method="GET">
+            Username:
+            <br>
+            <input type = 'text' name = 'username'>
+            <br>
+            <br>
+            Password:
+            <br>
+            <input type = 'password' name = 'password' >
+            <br>
+            <br>
+            <input type = 'submit' name = 'loginsub'>
+            <br>
+            <br>
+        </form>
+    </div>
+    <div class="row-sm">
+    </div>
+  </div>
+</div>
 {% endblock %}
