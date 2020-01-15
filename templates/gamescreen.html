@@ -28,7 +28,15 @@
 {% endblock %}
 
 {% block buttons %}
-<form action="/stats" method="GET">
-  <button class="btn btn-sm btn-warning mt-3 mr-3" type="submit">Stats</button>
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+      <form action="/stats" method="GET">
+        <button class="btn btn-sm btn-warning mt-3 mr-3" type="submit">Stats</button>
+      </form>
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>
 {% endblock %}
