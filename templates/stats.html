@@ -1,51 +1,59 @@
-{% extends base.html %}
+{% extends "base.html" %}
 
-<div class="container">
-  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="card">
-          <div class="card-body">
-            This is some text within a card body.
+{% block text %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"  style="width: 800px">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="bg-primary card text-center" style="width: 800px">
+              <div class="card-body text-white">
+                1
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="bg-secondary card text-center" style="width: 800px">
+              <div class="card-body text-white">
+                2
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="bg-success card text-center" style="width: 800px">
+              <div class="card-body text-white">
+                3
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="bg-danger card text-center" style="width: 800px">
+              <div class="card-body text-white">
+                4
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="bg-warning card text-center" style="width: 800px">
+              <div class="card-body">
+                5
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card">
-          <div class="card-body">
-            This is some text within a card body.
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card">
-          <div class="card-body">
-            This is some text within a card body.
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card">
-          <div class="card-body">
-            This is some text within a card body.
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="card">
-          <div class="card-body">
-            This is some text within a card body.
-          </div>
-        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+    <div class="col-sm"></div>
   </div>
 </div>
+{% endblock %}

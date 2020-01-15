@@ -29,6 +29,10 @@ def login():
 @app.route("/logout")
 def logout():
     return redirect(url_for('login'))
+
+@app.route("/stats")
+def stats():
+    return render_template('stats.html')
 if __name__ == "__main__":
    app.debug = True
    app.run()
