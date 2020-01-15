@@ -16,15 +16,18 @@
 
 {% block body %}
 <body>
-  <main class = "screen">
-    {% block screen %}{% endblock %}
+  <main>
+    {% block screen %} {% endblock %}
   </main>
+
   <sub>
     {% block text %}{% endblock %}
   </sub>
+  
   <sub>
     {% block buttons %}{% endblock %}
   </sub>
+
   {% block footer %}
   <hr>
   <footer class="footer">
@@ -34,6 +37,7 @@
     </div>
   </footer>
   {% endblock %}
+
   {% block script %}
   {% endblock %}
 </body>
