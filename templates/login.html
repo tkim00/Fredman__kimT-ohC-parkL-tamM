@@ -3,29 +3,11 @@
 {% block title %}Log In{% endblock %}
 
 {% block content %}
-<div class = "container">
-  <div class="row">
-    <div class="row-sm">
-    </div>
-    <div class="row-sm">
-      <form action='/login', method="GET">
-            Username:
-            <br>
-            <input type = 'text' name = 'username'>
-            <br>
-            <br>
-            Password:
-            <br>
-            <input type = 'password' name = 'password' >
-            <br>
-            <br>
-            <input type = 'submit' name = 'loginsub'>
-            <br>
-            <br>
-        </form>
-    </div>
-    <div class="row-sm">
-    </div>
-  </div>
-</div>
+  <form action="/home" method="GET">
+    <h1 class="h3 mb-3">Please sign in</h1>
+    <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+  </form>
 {% endblock %}

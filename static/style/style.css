@@ -7,6 +7,13 @@ body {
   background-color:#FFFFFB;
 }
 
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding-bottom: 20px;
+}
 
 .footer {
   position:absolute;
