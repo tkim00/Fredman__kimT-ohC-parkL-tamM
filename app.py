@@ -68,10 +68,10 @@ def start():
 def logout():
     return redirect(url_for('login'))
 
-@app.route("/stats")
+@app.route("/crewstats")
 def stats():
     if('username' in session and 'password' in session):
-        return render_template('stats.html')
+        return render_template('crewstats.html')
     return(redirect(url_for("login")))
 
 @app.route("/")
