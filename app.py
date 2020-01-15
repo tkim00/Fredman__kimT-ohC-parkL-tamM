@@ -54,11 +54,15 @@ passedEncounter = True
 
 @app.route("/home")
 def main():
-    return render_template('homescreen.html')
+    if('username' in session and 'password' in session):
+        return render_template('homescreen.html')
+    return(redirect(url_for("login")))
 
 @app.route("/start")
 def game():
-    return render_template('gamescreen.html')
+    if('username' in session and 'password' in session):
+        return render_template('gamescreen.html')
+    return(redirect(url_for("login")))
 
 @app.route("/logout")
 def logout():
@@ -66,11 +70,15 @@ def logout():
 
 @app.route("/stats")
 def stats():
-    return render_template('stats.html')
+    if('username' in session and 'password' in session):
+        return render_template('stats.html')
+    return(redirect(url_for("login")))
 
 @app.route("/")
 def home():
     #Redirect to create character game
+    if('username' in session and 'password' in session):
+        return redirect(url_for("main"))
     return(redirect(url_for("login")))
 
 @app.route("/login")
@@ -493,6 +501,6 @@ def changeWeapons():
 
 encounter()
 
-#if __name__ == "__main__":
-#    app.debug = True
-#    app.run()
+if __name__ == "__main__":
+    app.debug = True
+    app.run()

@@ -5,12 +5,12 @@
 {% block body %}
 <body>
   <h1> Login Page </h1>
-  <form action = "/">
+  <form action = "/home" method="GET">
     Username:<br>
     <input type="text" name="username"><br>
     Password:<br>
     <input type="text" name="password"><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" name="submitlogin">
   </form>
 </body>
 {% endblock %}
