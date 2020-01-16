@@ -91,17 +91,21 @@ def login():
             session['username'] = request.form["username"]
             session['password'] = request.form["password"]
             return redirect(url_for("main"))
-    return render_template("login.html")
+    return render_template("login.html", error="")
 
-@app.route("/signup")
+@app.route("/signup", methods=['GET','POST'])
 def signup():
     if request.method == 'POST':
         if('signsub' in request.form):
             # print(request.form)
             session['username'] = request.form["username"]
             session['password'] = request.form["password"]
-            return redirect(url_for("main"))
-    return render_template("signup.html")
+            session['password1'] = request.form["password1"]
+            if(session['password'] == session['password1']):
+                return redirect(url_for("main"))
+            else:
+                return render_template("signup.html", error="Passwords Don't Match")
+    return render_template("signup.html", error="")
 
 @app.route("/difficulty")
 def chooseYourDifficulty(): #Choose difficulty
