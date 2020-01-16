@@ -72,7 +72,7 @@ def logout():
     session.pop('password')
     return redirect(url_for('login'))
 
-@app.route("/crewstats")
+@app.route("/stats")
 def stats():
     if('username' in session and 'password' in session):
         return render_template('stats.html')
