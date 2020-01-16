@@ -32,9 +32,26 @@ def visualList(getStuff):
         print (i)
     print ("number of objects in list: " + str(len(getStuff)))
 
+#    3. check if info already in DB
+#         if in DB, returns TRUE
+#         if username not in DB or password is wrong, returns FALSE
+def checkLogin(username, password):
+     command = " SELECT * FROM {}; "
+     userData = getTableData('userStuff', command)
+     x = 0
+     while x < len(userData):
+          if username == userData[x][0]:
+               if password == userData[x][1]:
+                    return True
+          x += 1
+     return False # not in DB
 
-
-# LOGIN METHOD
+#    4. add row in userStuff in DB (sign up new users)
+def signUp(usrnme, pswrd):
+     command = " INSERT INTO userStuff VALUES ('{}', '{}'); ".format(usrnme, pswrd)
+     c.execute(command)
+     db.commit()
+     db.close()
 
 
 
@@ -100,4 +117,18 @@ def getSituations():
 
 
 # TEST
+<<<<<<< HEAD
+signUp('bob', 'joe')
+#print checkLogin('admin', 'admin')
+#print getSituations()[0]
+#visualList(getNormShipHealth()[0])
+#hey = "SELECT * FROM {}"
+#y = getTableData('userStuff', hey)
+#x = 0
+#while x < len(y):
+#                 print y[x][1]
+#                 x += 1
+#print getTableData('userStuff',hey)[0][0]
+=======
 print(getSituations()[0][0])
+>>>>>>> ed1eceb1bdc5b6d3cccd86db0d8e8523c40dabd0
