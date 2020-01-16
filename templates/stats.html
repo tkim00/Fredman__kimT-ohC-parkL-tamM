@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block text %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"  style="width: 800px; margin-bottom: auto;">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="bg-primary card text-center" style="width: 800px; height: auto; margin-bottom: auto;">
+              <div class="card-body text-white">
+                <h1 class="display-4 py-3"> Crew Status</h1>
+                <img src="../static/images/person.png" alt="person 1" style="width: 250px; height: auto">
+                <hr>
+                <div class="text-white lead py-3" >Hunger</div>
+                <div class="progress pb-4">
+                  <div class="progress-bar progress-bar-striped bg-info pb-4" role="progressbar" style="width: {{crewStatus[0]/100 * 200}}%; padding: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="padding: 20px;"></div>
+                </div>
+                <div class="text-white lead py-3">Energy</div>
+                <div class="progress pb-4">
+                  <div class="progress-bar progress-bar-striped bg-info pb-4" role="progressbar" style="width: {{crewStatus[1]/100 * 100}}%; padding: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="padding: 20px;"></div>
+                </div>
+                <div class="text-white lead py-3">Health</div>
+                <div class="progress pb-4">
+                  <div class="progress-bar progress-bar-striped bg-info pb-4" role="progressbar" style="width: {{crewStatus[2]}}%; padding: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="padding: 20px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="carousel-item">
+            <div class="bg-secondary card text-center" style="width: 800px; height: auto; margin-bottom: auto;">
+              <div class="card-body text-white">
+                <h1 class="display-4 py-3"> Ship Status </h1>
+                <img src="http://roll.diceapi.com/images/poorly-drawn/d6/4.png" alt="person 2" style="width: 250px; height: auto">
+                <hr>
+                <div class="text-white lead py-3" >Health</div>
+                <div class="progress pb-4">
+                  <div class="progress-bar progress-bar-striped bg-info pb-4" role="progressbar"  style="width: {{crewStatus[3]}}%; padding: 20px;"aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style=" padding: 20px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="carousel-item">
+            <div class="bg-success card text-center" style="width: 800px; height: auto;">
+              <div class="card-body text-white">
+                <h1 class="display-4 py-3"> Inventory </h1>
+                <img src="../static/images/backpack.png" alt="person 3" style="width: 250px; height: auto; margin-bottom: auto;">
+                <hr>
+                <div class="text-white lead py-3" >Bandages</div>
+                <div class="progress pb-4">
+                  <div class="progress-bar progress-bar-striped bg-info pb-4" role="progressbar" style="width: {{userInventory[0]/200 * 100}}%; padding: 20px;"aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="padding: 20px;"></div>
+                </div>
+                <div class="text-white lead py-3" >Food</div>
+                <div class="progress pb-4">
+                  <div class="progress-bar progress-bar-striped bg-info pb-4" role="progressbar" style="width: {{userInventory[1]/200 * 100}}%; padding: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="padding: 20px;"></div>
+                </div>
+                <div class="text-white lead py-3" >Fuel</div>
+                <div class="progress pb-4">
+                  <div class="progress-bar progress-bar-striped bg-info pb-4" role="progressbar" style="width: {{userInventory[2]/200 * 100}}%; padding: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="padding: 20px;"></div>
+                </div>
+                <div class="text-white lead py-3" >Money</div>
+                <div class="progress pb-4">
+                  <div class="progress-bar progress-bar-striped bg-info pb-4" role="progressbar" style="width: {{userInventory[3]/1000 * 100}}%; padding: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="padding: 20px;"></div>
+                </div>
+                <div class="text-white lead py-3" >Ship Parts</div>
+                <div class="progress pb-4">
+                  <div class="progress-bar progress-bar-striped bg-info pb-4" role="progressbar" style="width: {{userInventory[4]/200 * 100}}%; padding: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="padding: 20px;"></div>
+                </div>
+                <div class="text-white lead py-3" >Weapons</div>
+                <div class="progress pb-4">
+                  <div class="progress-bar progress-bar-striped bg-info pb-4" role="progressbar" style="width: {{userInventory[5]/200 * 100}}%; padding: 20px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="padding: 20px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block buttons %}
+<div class="container d-block justify-content-center mb-4">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+      <form action="/return" method="GET">
+        <button class="btn btn-sm btn-warning mt-3 mr-3" type="submit" align="center">Go Back</button>
+      </form>
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

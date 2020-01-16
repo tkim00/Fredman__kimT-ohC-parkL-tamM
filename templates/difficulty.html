@@ -1,0 +1,46 @@
+{% extends "gamescreen.html" %}
+
+{% block screen %}
+<div class="container rounded bg-dark mt-5 text-center" style = "width: 550px;">
+  <div class="display-3" id="daynum"></div>
+  <img src="../static/images/space.jpg"  class="rounded mx-auto d-block" alt="Responsive image" style="width: 500px; height: 300px; padding-top: 30px; padding-bottom: 30px;">
+</div>
+{% endblock %}
+
+{% block text %}
+  <div class="container bg-light text-center my-5">
+    <p class="lead py-1">Choose your difficulty:</p>
+    <p class="lead py-1">0. Easy </p>
+    <p class="lead py-1">1. Medium </p>
+    <p class="lead py-1">2. Hard</p>
+  </div>
+
+{% endblock %}
+
+{% block type %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+      <form action="/name" method="POST">
+        <div class="input-group mb-3" style="width: auto;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">></span>
+          </div>
+          <input type="text" class="form-control" placeholder="Type Response" aria-label="response" aria-describedby="basic-addon1" name="input">
+        </div>
+        <button class="btn btn-sm btn-warning mt-3 mr-3 d-none" type="Next Day">Enter</button>
+      </form>
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block buttons %}{% endblock %}
+
+{% block script %}
+<script src="javascript/method.js"></script>
+</script>
+{% endblock %}

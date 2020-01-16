@@ -1,3 +1,33 @@
+connorO -- 2020-01-16 07:32
+-Finished all of html
+-Successfully implemented bootstrap
+-Fixed login/register
+-Used Javascript for modals
+leiaP -- 2020-01-15 23:57
+Added 2 more methods to database methods python file
+- first method checks if given username & password are in database
+  - if not or if any error: return false
+  - if they match: return true
+- second method adds to database new username & password for signup
+
+leiaP -- 2020-01-14 20:20
+Edited python file for database setup
+- removed need for a table
+Edited pre-existing database
+- eliminated probability & game data variables
+- filled database w/ numerous encounters + situations
+- added in table for essential login (username, password)
+Added python file of methods to retrive information from database
+- methods focused on pulling random or sections of rows from tables
+- methods format data into lists for visual practicality & easy data retrieval/selection
+- methods will be used for game play
+
+leiaP -- 2020-01-13 14:20
+Added python file for database setup
+Added actual database - must be reformatted & edited
+- contains initially 4 tables - need to minimize to 3
+- some table variables determined unnecessary - need to remove
+
 manfredT -- 2020-01-12 21:27
 Fixed shop and added crew status. Game is fully functional, but very one dimensional.
 We need to add random encounters, which should be easy. We also need to link up the

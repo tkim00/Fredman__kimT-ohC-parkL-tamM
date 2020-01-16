@@ -1,0 +1,27 @@
+{% extends "gamescreen.html" %}
+
+
+
+{% block screen %}
+<div class="container rounded bg-dark mt-5 text-center" style = "width: 550px;">
+  <div class="display-3" id="daynum"></div>
+  <img src={{src}}  class="rounded mx-auto d-block" alt="Responsive image" style="width: 500px; height: 300px; padding-top: 30px; padding-bottom: 30px;">
+</div>
+{% endblock %}
+
+{% block text %}
+Welcome to Planet {{name}}!<br>
+0. Contiune <br>
+1. Inventory <br>
+2. Crew status <br>
+3. Settings <br>
+4. Shop <br>
+{% endblock %}
+<!-- send form to /checkPlanet-->
+
+{% block buttons %}{% endblock %}
+
+{% block script %}
+<script src="javascript/method.js"></script>
+</script>
+{% endblock %}
