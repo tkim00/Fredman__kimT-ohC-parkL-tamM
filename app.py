@@ -252,6 +252,7 @@ def game():
         if (response == 3): return render_template("settings.html", settings = userSettings)
         print("Day " + str(userJourney[0]))
         print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings")
+        return returnToGame()
         #response = askUser()
 
     userJourney[0] += 1
@@ -293,9 +294,9 @@ def encounter():
         else:
             result = DBMethods.getLowShipHealth()[random.randint(0,2)]
     #SPECIAL ENCOUNTER: SITUATION
-    if (typeEncounter == 4):
-        result = DBMethods.getSituations()[0]
-        return print(result[0])
+    #if (typeEncounter == 4):
+    #    result = DBMethods.getSituations()[0]
+    #    return result[0]
 
     char = userData[random.randint(1,4)]
     print("0. Continue")
@@ -313,39 +314,10 @@ def planet():
         print("Day " + userJourney[0])
         print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings\n4. Shop")
         response = askUser()
+        return("YES")
+    return("YES")
 
 
-# BANDAGES, FOOD, FUEL, MONEY, SHIP PARTS, WEAPONS
-#     0       1    2      3        4         5
-def inventory():
-    system("cls")
-    print("Current Inventory:")
-    print("Bandages: " + str(userInventory[0]))
-    print("Food: " + str(userInventory[1]))
-    print("Fuel: " + str(userInventory[2]))
-    print("Money: " + str(userInventory[3]))
-    print("Ship Parts: " + str(userInventory[4]))
-    print("Weapons: " + str(userInventory[5]) + "\n")
-    print("0. Continue\n")
-    response = askUser()
-    if (response != 0): return inventory()
-    return None
-
-def status():
-    global statusMessages
-    system("cls")
-    print("Crew Status:")
-    print("Hunger: " + str(crewStatus[0]))
-    print("Energy: " + str(crewStatus[1]))
-    print("Health: " + str(crewStatus[2]))
-    print("Ship Health: " + str(crewStatus[3]) + "\n")
-    print(statusMessages[0])
-    print(statusMessages[1])
-    print(statusMessages[2])
-    print("0. Continue\n")
-    response = askUser()
-    while (response != 0): return crewStatus()
-    return None
 
 @app.route("/changeSettings", methods=['GET','POST'])
 def changeSettings():
@@ -361,27 +333,6 @@ def changeSettings():
     return returnToGame()
 
 
-# USER SETTINGS
-#  FOOD(TXT), SPEED(TXT),
-#   0             1
-def settings():
-    system("cls")
-    print("Current Settings:")
-    print("Food: " + userSettings[0])
-    print("Speed: " + userSettings[1] + "\n")
-    print("0. Meager   1. Normal     2. Banquet")
-    print("3. Slow     4. Steady     5. Fast\n")
-    print("6. Continue\n")
-    response = askUser()
-    while (response != 6):
-        if (response == 0): userSettings[0] = "Meager"
-        if (response == 1): userSettings[0] = "Normal"
-        if (response == 2): userSettings[0] = "Banquet"
-        if (response == 3): userSettings[1] = "Slow"
-        if (response == 4): userSettings[1] = "Steady"
-        if (response == 5): userSettings[1] = "Fast"
-        return render_template("settings.html", settings = userSettings)
-    return None
 
 
 #STATUS MESSAGES IN crewStatus
@@ -462,19 +413,7 @@ def dayPasses():
         statusMessages[1] = "Your crew has collapsed."
         crewStatus[2] -= 10
     ######################
-
-############################################################################
-############################################################################
-# HELPER METHODS!!!!!!
-def askUser():
-    #raw_input NOT in python 3
-    data = input("Input number: ")
-    try:
-        num = int(data)
-        #print(num)
-        return num
-    except:
-        return askUser()
+    return ("worked")
 
 
 

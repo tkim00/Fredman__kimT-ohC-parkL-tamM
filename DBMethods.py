@@ -100,4 +100,4 @@ def getSituations():
 
 
 # TEST
-visualList(getLowShipHealth())
+print(getSituations()[0][0])
