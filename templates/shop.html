@@ -50,9 +50,21 @@
 {% endblock %}
 
 {% block text %}
-<div class = "container bg-info my-5" style="width: 550px;">
-  {{encountertext}}
-</div>
+0. Buy Ship Parts         1. Sell Ship Parts<br>
+2. Buy Fuel               3. Sell Fuel<br>
+4. Buy Food               5. Sell Food<br>
+6. Buy Bandages           7. Sell Bandages<br>
+8. Buy Weapons            9. Sell Weapons<br>
+10. Continue<br>
+{{message}}
+<br>
+Balance: {{stat[3]}} <br>
+Ship parts: {{stat[4]}}<br>
+Fuel: {{stat[2]}}<br>
+Food: {{stat[1]}}<br>
+Bandages: {{stat[0]}}<br>
+Weapons: {{stat[5]}}<br>
+
 {% endblock %}
 
 {% block type %}
@@ -60,7 +72,7 @@
   <div class="row">
     <div class="col-sm"></div>
     <div class="col-sm">
-      <form action="/game" method="POST">
+      <form action="/shop" method="POST">
         <div class="input-group mb-3" style="width: auto;">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">></span>

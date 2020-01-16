@@ -10,18 +10,27 @@ c = db.cursor()               #facilitate db ops
 
 #    1. get table data from DB
 def getTableData(table, command):
-     rowList = []
-     getRow = c.execute(command.format(table))
-     tableData = getRow.fetchall()
-     for row in tableData:
-          rowList.append([ item for item in row ])
-     return rowList
+    DB_FILE="ultimate.db"
+
+    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+    c = db.cursor()               #facilitate db ops
+    rowList = []
+    getRow = c.execute(command.format(table))
+    tableData = getRow.fetchall()
+    for row in tableData:
+        rowList.append([ item for item in row ])
+    return rowList
 
 #    2. get easy visual of DB list
 def visualList(getStuff):
-     for i in getStuff:
-          print (i)
-     print ("number of objects in list: " + str(len(getStuff)))
+    DB_FILE="ultimate.db"
+
+    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+    c = db.cursor()               #facilitate db ops
+
+    for i in getStuff:
+        print (i)
+    print ("number of objects in list: " + str(len(getStuff)))
 
 
 
