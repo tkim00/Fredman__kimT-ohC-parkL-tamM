@@ -15,14 +15,20 @@
 
 {% block body %}
 <body class="text-center">
+  {% block modal%}
+  {% endblock %}
+
   {% block header %}
   <header class="header">
+      {% block logout %}
       <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4">
           <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
         </div>
       </div>
+      {% endblock %}
       <nav class="navbar navbar-dark bg-dark">
+        <div class"navbar-brand"><p class="lead text-white">Space Trails</p></div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,6 +53,7 @@
     {% block buttons %}{% endblock %}
   </sub>
   {% endblock %}
+
 
   {% block footer %}
   <footer class="footer">

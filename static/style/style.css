@@ -2,10 +2,6 @@ html {
   height:100%;
 }
 
-body {
-  height:100%;
-  background-color:#FFFFFB;
-}
 
 .header {
   position: absolute;
@@ -15,11 +11,17 @@ body {
   padding-bottom: 20px;
 }
 
+
+body {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  background-color:#FFFFFB;
+}
+
 .footer {
-  position:absolute;
-  right:0;
-  bottom:0;
-  left:0;
+  position: absolute;
+  bottom: 0;
   background-color:#345773;
   text-align:center;
 }

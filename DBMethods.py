@@ -2,7 +2,7 @@ import sqlite3   #enable control of an sqlite database
 
 DB_FILE="ultimate.db"
 
-db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, otherwise create
 c = db.cursor()               #facilitate db ops
 
 
@@ -10,22 +10,55 @@ c = db.cursor()               #facilitate db ops
 
 #    1. get table data from DB
 def getTableData(table, command):
-     rowList = []
-     getRow = c.execute(command.format(table))
-     tableData = getRow.fetchall()
-     for row in tableData:
-          rowList.append([ item for item in row ])
-     return rowList
+    DB_FILE="ultimate.db"
+
+    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+    c = db.cursor()               #facilitate db ops
+    rowList = []
+    getRow = c.execute(command.format(table))
+    tableData = getRow.fetchall()
+    for row in tableData:
+        rowList.append([ item for item in row ])
+    return rowList
 
 #    2. get easy visual of DB list
 def visualList(getStuff):
-     for i in getStuff:
-          print (i)
-     print ("number of objects in list: " + str(len(getStuff)))
+    DB_FILE="ultimate.db"
 
+    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+    c = db.cursor()               #facilitate db ops
 
+    for i in getStuff:
+        print (i)
+    print ("number of objects in list: " + str(len(getStuff)))
 
-# LOGIN METHOD
+#    3. check if info already in DB
+#         if in DB, returns TRUE
+#         if username not in DB or password is wrong, returns FALSE
+def checkLogin(username, password):
+     command = " SELECT * FROM {}; "
+     userData = getTableData('userStuff', command)
+     x = 0
+     while x < len(userData):
+          if username == userData[x][0]:
+               if password == userData[x][1]:
+                    return True
+          x += 1
+     return False # not in DB
+
+#    4. add row in userStuff in DB (sign up new users)
+
+def checkSignUp(username, password):
+    if checkLogin(username, password): return False;
+    else: return True;
+
+def signUp(usrnme, pswrd):
+    db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, otherwise create
+    c = db.cursor()               #facilitate db ops
+    command = " INSERT INTO userStuff VALUES ('{}', '{}'); ".format(usrnme, pswrd)
+    c.execute(command)
+    db.commit()
+    db.close()
 
 
 
@@ -91,4 +124,16 @@ def getSituations():
 
 
 # TEST
-visualList(getLowShipHealth())
+
+signUp('bob', 'joe')
+#print checkLogin('admin', 'admin')
+#print getSituations()[0]
+#visualList(getNormShipHealth()[0])
+#hey = "SELECT * FROM {}"
+#y = getTableData('userStuff', hey)
+#x = 0
+#while x < len(y):
+#                 print y[x][1]
+#                 x += 1
+#print getTableData('userStuff',hey)[0][0]
+#print(getSituations()[0][0])
