@@ -53,9 +53,12 @@ def checkSignUp(username, password):
     else: return True;
 
 def signUp(usrnme, pswrd):
-     command = " INSERT INTO userStuff VALUES ('{}', '{}'); ".format(usrnme, pswrd)
-     c.execute(command)
-     db.commit()
+    db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, otherwise create
+    c = db.cursor()               #facilitate db ops
+    command = " INSERT INTO userStuff VALUES ('{}', '{}'); ".format(usrnme, pswrd)
+    c.execute(command)
+    db.commit()
+    db.close()
 
 
 
