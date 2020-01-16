@@ -246,27 +246,27 @@ def game():
         #PLANET 0
     if (userJourney[1] >= userJourney[2]):
         print("PLANET 0")
-        return render_template("/planet")
         userJourney[2] += 1000
+        return render_template("planet.html", name = "Gemini")
     #PLANET 1
     if (userJourney[1] >= userJourney[3]):
         print("PLANET 1")
-        return render_template("/planet")
         userJourney[3] += 1000
+        return render_template("planet.html", name = "Soupy")
     #PLANET 2
     if (userJourney[1] >= userJourney[4]):
         print("PLANET 2")
-        return render_template("/planet")
         userJourney[4] += 1000
+        return render_template("planet.html", name = "Vader")
     #PLANET 3
     if (userJourney[1] >= userJourney[5]):
         print("PLANET 3")
-        return render_template("/planet")
         userJourney[5] += 1000
+        return render_template("planet.html", name = "Termina")
     #FINISH
     if (userJourney[1] >= userJourney[6]):
         print("Congratulations! You have finished the game")
-        return render_template("/fin")
+        return render_template("homescreen.html")
         #return endScreen()
 
         #return endScreen()
