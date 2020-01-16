@@ -23,7 +23,7 @@ DB_FILE="ultimate.db"
 
 # BANDAGES, FOOD, FUEL, MONEY, SHIP PARTS, WEAPONS
 #     0       1    2      3        4         5
-userInventory = [100,100,0,100,100,100]
+userInventory = [200,200,200,1000,200,200]
 
 # DIFFICULTY, NAME, CREW0, CREW1, CREW2,
 #     0        1      2      3      4
@@ -39,14 +39,18 @@ userSettings = ["Normal","Steady", 1, 1]
 #   0      1         2         3         4        5         6
 userJourney = [0,0,40,100,150,225,300]
 
-
 # crewStatus
 #  food    speed  bandages
 # HUNGER, ENERGY, HEALTH, SHIP HEALTH
 #   0       1       2         3
-crewStatus = [300, 100, 100, 100]
+crewStatus = [200, 100, 100, 100]
 
 passedEncounter = True
+
+#STATUS MESSAGES IN crewStatus
+# HUNGER, HEALTH, Ship HEALTH
+#   0       1         2
+statusMessages = ['','','']
 
 ############################################################################
 ############################################################################
@@ -60,9 +64,7 @@ def main():
 
 @app.route("/start")
 def start():
-    if('username' in session and 'password' in session):
-        return render_template('gamescreen.html')
-    return(redirect(url_for("login")))
+    return render_template('gamescreen.html')
 
 @app.route("/logout")
 def logout():
@@ -103,44 +105,41 @@ def signup():
             return redirect(url_for("main"))
     return render_template("signup.html")
 
-@app.route("/difficulty")
+
+@app.route("/startGame")
+def startGame():
+    print("STARTGAME!!!")
+    return render_template("difficulty.html")
+
+@app.route("/name", methods=['GET','POST'])
 def chooseYourDifficulty(): #Choose difficulty
-    system("cls")
-    print( "Choose your difficulty: \n0. Easy\n1. Medium\n2. Hard")
-    response = askUser()
-    print("RESPONSE: " + str(response))
+    print("HERE!!!")
+    print(request.form['input'])
+    response = int(request.form['input'])
     global userData
     global userInventory
     if (response == 0):
-        print("Easy Mode Selected")
         userInventory[3] = 1500
     elif (response == 1):
-        print("Medium Mode Selected")
         userInventory[3] = 1000
     elif (response == 2):
-        print("Hard Mode Selected")
         userInventory[3] = 500
-    else:
-        return difficulty()
+    else: return "Broke"
     userData[0] = response
     print(userInventory)
     print(userData)
-    return chooseYourName()
-    #return(redirect(url_for("chooseYourName")))
+    return render_template("name.html")
 
-@app.route("/name")
+@app.route("/crew", methods=['GET','POST'])
 def chooseYourName(): #Choose your character name
-    system("cls")
-    print("Choose your character name: ")
-    response = input()
+    response = request.form['input']
     try:
         name = int(response)
-        return chooseYourName()
+        return redirect(url_for(chooseYourDifficulty))
     except:
         global userData
         userData[1] = response
-        print(userData)
-        return chooseYourCrew()
+        return render_template("crew.html")
         #return(redirect(url_for("chooseYourCrew")))
 
 @app.route("/crew")
@@ -152,7 +151,6 @@ def chooseYourCrew():
         response = input()
         global userData
         userData[int + 2] = response
-        print(userData)
         int += 1
     return shop("")
     #return(redirect(url_for("shop")))
@@ -289,31 +287,53 @@ def game():
 
     return game()
 
-# def encounter():
-#
-#
-#
-#
-#     gotEncounter = DBMethods.getTableData('userencounters')
-#     system("cls")
-#     print("Day " + str(userJourney[0]))
-#     char = userData[random.randint(1,4)]
-#     print(char + " " + gotEncounter[1])
-#     print("0. Continue")
-#     response = askUser()
-#     while (response != 0):
-#         response = askUser()
-#     print("GO ONTO GAME")
-#     #print(DBMethods.getTableData('userencounters'))
-#     #return exampleEncounter()
+# crewStatus
+#  food    speed  bandages
+# HUNGER, ENERGY, HEALTH, SHIP HEALTH
+#   0       1       2         3
+#crewStatus = [300, 100, 100, 100]
+def encounter():
+    global crewStatus
+    #determine which aspect
+    typeEncounter = random.randint(0,4)
+    #HUNGER
+    if (typeEncounter == 0):
+        if (crewStatus[0] >= 50):
+            result = DBMethods.getNormHunger()[random.randint(0,5)]
+        else:
+            result = DBMethods.getLowHunger()[random.randint(0,2)]
+    #ENERGY
+    if (typeEncounter == 1):
+        if (crewStatus[1] >= 20):
+            result = DBMethods.getNormEnergy()[random.randint(0,1)]
+        else:
+            result = DBMethods.getLowEnergy()[random.randint(0,4)]
+    #HEALTH
+    if (typeEncounter == 2):
+        if (crewStatus[2] >= 20):
+            result = DBMethods.getNormHealth()[random.randint(0,1)]
+        else:
+            result = DBMethods.getLowHealth()[random.randint(0,3)]
+    #SHIP HEALTH
+    if (typeEncounter == 3):
+        if (crewStatus[3] >= 20):
+            result = DBMethods.getNormShipHealth()[random.randint(0,2)]
+        else:
+            result = DBMethods.getLowShipHealth()[random.randint(0,2)]
+    #SPECIAL ENCOUNTER: SITUATION
+    if (typeEncounter == 4):
+        result = DBMethods.getSituations()[0]
+        return print(result[0])
 
-def exampleEncounter():
-    print("Nothing happened today.\n0. Ok\n")
+    system("cls")
+    print("Day " + str(userJourney[0]))
+    char = userData[random.randint(1,4)]
+    print(char + " " + result[1])
+    print("0. Continue")
     response = askUser()
     while (response != 0):
         response = askUser()
-    return None
-
+    print("GO ONTO GAME")
 
 def planet():
     print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings\n4. Shop")
@@ -346,12 +366,16 @@ def inventory():
     return None
 
 def status():
+    global statusMessages
     system("cls")
     print("Crew Status:")
     print("Hunger: " + str(crewStatus[0]))
     print("Energy: " + str(crewStatus[1]))
     print("Health: " + str(crewStatus[2]))
     print("Ship Health: " + str(crewStatus[3]) + "\n")
+    print(statusMessages[0])
+    print(statusMessages[1])
+    print(statusMessages[2])
     print("0. Continue\n")
     response = askUser()
     while (response != 0): return crewStatus()
@@ -380,15 +404,16 @@ def settings():
     return None
 
 
+#STATUS MESSAGES IN crewStatus
+# HUNGER, HEALTH, Ship HEALTH
+#   0       1         2
+#statusMessages = ['','','']
+
 # crewStatus
 #  food    speed  bandages
 # HUNGER, ENERGY, HEALTH, SHIP HEALTH
 #   0       1       2         3
-#crewStatus = [300, 100, 100, 100]
-hungryMessage = True
-starvingMessage = True
-lowFuelMessage = True
-criticalLowFuelMessage = True
+#crewStatus = [200, 100, 100, 100]
 def dayPasses():
     global hungryMessage
     global starvingMessage
@@ -401,73 +426,62 @@ def dayPasses():
     global userData
     global crewStatus
 
+    ###################### FOOD / HUNGER
     if (userSettings[0] == "Meager"):
-        if (userInventory[1] >= 10):
-            userInventory[1] -= 10
-            if (crewStatus[0] >= 30): crewStatus[0] -= 30
+        if (userInventory[1] >= 10): #any food left?
+            userInventory[1] -= 20
+            if (crewStatus[0] >= 30): crewStatus[0] -= 30 #any hunger left?
             else: crewStatus[0] = 0
-        else: crewStatus -= 10
+        else: crewStatus -= 10 #damage per day of no food
     if (userSettings[0] == "Normal"):
         if (userInventory[1] >= 20):
             userInventory[1] -= 20
-        else: crewStatus[0] -= 10
+        else: crewStatus[0] -= 20
     if (userSettings[0] == "Banquet"):
         if (userInventory[1] >= 30):
             userInventory[1] -= 30
             if (crewStatus[0] <= 350):crewStatus[0] += 30
-        else: crewStatus[0] -= 10
+        else: crewStatus[0] -= 20
 
+    if (crewStatus[0] > 100):
+        statusMessages[1] = ""
+    if ((crewStatus[0] <= 100) and (crewStatus[0] > 50)):
+        statusMessages[0] = "Your crew is getting hungry."
+    if ((crewStatus[0] <= 50) and (crewStatus[0] > 0)):
+        statusMessages[0] = "Your crew is pale and thin."
+    if (crewStatus[0] == 0):
+        statusMessages[0] = "Your crew is starving."
+        crewStatus[2] -= 10
+    ######################
 
-    if (crewStatus[0] <= 100 and hungryMessage == True):
-        hungryMessage = False
-        system("cls")
-        print("Your crew is getting hungry.\n0. Continue")
-        response = askUser()
-        while (response != 0): response = askUser()
-    if (crewStatus[0] <= 0 and starvingMessage == True):
-        starvingMessage = False
-        system("cls")
-        print("Your crew is starving.")
-        response = askUser()
-        while (response != 0): response = askUser()
-    if (crewStatus[0] <= 0 and starvingMessage == False):
-        print([userData[1]] + " has died of starvation.\n0. Continue")
-        while (response != 0): response = askUser()
-    if (crewStatus[0] > 0): starvingMessage = True
-    if (crewStatus[0] > 100): hungryMessage = True
-
+    ###################### SPEED / ENERGY
     if (userSettings[1] == "Slow"): #2 mi/g
-        if (userInventory[2] >= 5): userInventory[2] -= 5
+        if (userInventory[2] >= 5):
+            userInventory[2] -= 5
+            crewStatus[1] += 10
+        else: crewStatus[1] -= 15
         userJourney[1] += 10
-        if (crewStatus[1] <= 95): crewStatus[1] += 5
     if (userSettings[1] == "Steady"): #/1.7 mi/g
         if (userInventory[2] >= 10): userInventory[2] -= 10
+        else: crewStatus[1] -= 15
         userJourney[1] += 17
     if (userSettings[1] == "Fast"): #1.5 mi/g
-        if (userInventory[2] >= 20): userInventory[2] -= 20
+        if (userInventory[2] >= 20):
+            userInventory[2] -= 20
+            crewStatus[1] -= 10
+        else: crewStatus[1] -= 15
         userJourney[1] += 30
-        if (crewStatus[1] >= 5): crewStatus[1] -= 5
 
-    if (userInventory[2] <= 60 and lowFuelMessage == True):
-        lowFuelMessage = False
-        system("cls")
-        print("Your fuel is running low.\n0. Continue")
-        response = askUser()
-        while (response != 0): response = askUser()
-    if (userInventory[2] <= 0 and criticalLowFuelMessage == True):
-        criticalLowFuelMessage = False
-        system("cls")
-        print("Your fuel is at critical levels.")
-        response = askUser()
-        while (response != 0): response = askUser()
-    if (userInventory[2] <= 0 and criticalLowFuelMessage == False):
-        crewStatus[3] -= 10
-        print("Your ship has been damaged due to low fuel.\n0. Continue")
-        response = askUser()
-        while (response != 0): response = askUser()
-    if (userInventory[2] > 0): lowFuelMessage = True
-    if (userInventory[2] > 60): criticalLowFuelMessage = True
-
+    if (crewStatus[1] > 80):
+        statusMessages[1] = ""
+    if ((crewStatus[1] <= 80) and (crewStatus[1] > 40)):
+        statusMessages[1] = "Your crew is getting tired."
+    if ((crewStatus[1] <= 40) and (crewStatus[1] > 20)):
+        statusMessages[1] = "Your crew is exhausted."
+    if (crewStatus[1] <= 0):
+        statusMessages[1] = "Your crew has collapsed."
+        crewStatus[2] -= 10
+    ######################
     return game()
 
 ############################################################################
@@ -483,37 +497,9 @@ def askUser():
     except:
         return askUser()
 
-def save():
-    db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
-    c = db.cursor()               #facilitate db ops
-    userStuff = "INSERT INTO userStuff (id,username,password,bandages ,food ,fuel ,money ,shipParts ,weapons ,day ,difficulty ,foodSetting ,speedSetting ,foodFactor ,speedFactor) VALUES (0,\'man\',\'fred\',0,0,0,0,0,0,0,\'difficulty\',\'foodSetting\',\'speedSetting\',0,0)"
-    #userteamTable = "INSERT INTO teams (id,name,crew0,crew1,crew2,nameStat
-
-    c.execute(userStuff)
-    db.commit()
-    db.close()
-    return None
-
-def changeMoney():
-    return None
-
-def changeFood():
-    return None
-
-def changeFuel():
-    return None
-
-def changeShipParts():
-    return None
-
-def changeBandages():
-    return None
-
-def changeWeapons():
-    return None
 
 
-#encounter()
+#chooseYourDifficulty()
 
 if __name__ == "__main__":
     app.debug = True
