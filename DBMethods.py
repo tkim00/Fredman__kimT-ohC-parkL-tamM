@@ -2,7 +2,7 @@ import sqlite3   #enable control of an sqlite database
 
 DB_FILE="ultimate.db"
 
-db = sqlite3.connect(DB_FILE) #open if file exists, otherwise create
+db = sqlite3.connect(DB_FILE, check_same_thread=False) #open if file exists, otherwise create
 c = db.cursor()               #facilitate db ops
 
 
@@ -47,11 +47,15 @@ def checkLogin(username, password):
      return False # not in DB
 
 #    4. add row in userStuff in DB (sign up new users)
+
+def checkSignUp(username, password):
+    if checkLogin(username, password): return False;
+    else: return True;
+
 def signUp(usrnme, pswrd):
      command = " INSERT INTO userStuff VALUES ('{}', '{}'); ".format(usrnme, pswrd)
      c.execute(command)
      db.commit()
-     db.close()
 
 
 

@@ -92,7 +92,10 @@ def login():
             # print(request.form)
             session['username'] = request.form["username"]
             session['password'] = request.form["password"]
-            return redirect(url_for("main"))
+            if(DBMethods.checkLogin(session['username'], session['password'])):
+                return redirect(url_for("main"))
+            else:
+                return render_template("login.html", error="Wrong Username or Password")
     return render_template("login.html", error="")
 
 @app.route("/signup", methods=['GET','POST'])
@@ -104,7 +107,11 @@ def signup():
             session['password'] = request.form["password"]
             session['password1'] = request.form["password1"]
             if(session['password'] == session['password1']):
-                return redirect(url_for("main"))
+                if(DBMethods.checkSignUp(session['username'], session['password'])):
+                    DBMethods.signUp(session['username'], session['password'])
+                    return redirect(url_for("main"))
+                else:
+                    return render_template("signup.html", error="Username and Password Taken")
             else:
                 return render_template("signup.html", error="Passwords Don't Match")
     return render_template("signup.html", error="")
@@ -449,7 +456,7 @@ def dayPasses():
     return ("worked")
 
 
-print(planet1())
+#print(planet1())
 
 if __name__ == "__main__":
     app.debug = True
