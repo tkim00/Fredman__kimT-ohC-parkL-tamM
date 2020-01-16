@@ -283,9 +283,7 @@ def game():
     #INVENTORY AND CREW STATUS
     response = int(request.form["input"])
     while (response != 0):
-        if (response == 1): return render_template("inventory.html", stat = userInventory)
-        if (response == 2): return render_template("crewStatus.html", crewStat = crewStatus, crewMessages = statusMessages)
-        if (response == 3): return render_template("settings.html", settings = userSettings)
+        if (response == 1): return render_template("settings.html", settings = userSettings)
         print("Day " + str(userJourney[0]))
         print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings")
         return returnToGame()
