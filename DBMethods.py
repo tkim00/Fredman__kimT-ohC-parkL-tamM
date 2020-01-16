@@ -136,4 +136,4 @@ signUp('bob', 'joe')
 #                 print y[x][1]
 #                 x += 1
 #print getTableData('userStuff',hey)[0][0]
-print(getSituations()[0][0])
+#print(getSituations()[0][0])
