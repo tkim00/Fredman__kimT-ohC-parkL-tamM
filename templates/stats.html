@@ -5,13 +5,13 @@
   <div class="row">
     <div class="col-sm"></div>
     <div class="col-sm">
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"  style="width: 800px;">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"  style="width: 800px; margin-bottom: auto;">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <div class="bg-primary card text-center" style="width: 800px; height: auto;">
+            <div class="bg-primary card text-center" style="width: 800px; height: auto; margin-bottom: auto;">
               <div class="card-body text-white">
                 <h1 class="display-4 py-3"> Crew Status</h1>
-                <img src="../static/images/person.png" alt="person 1" style="width: 250px; height: 250px">
+                <img src="../static/images/person.png" alt="person 1" style="width: 250px; height: auto">
                 <hr>
                 <div class="text-white lead py-3" >Hunger</div>
                 <div class="progress pb-4">
@@ -31,10 +31,10 @@
 
 
           <div class="carousel-item">
-            <div class="bg-secondary card text-center" style="width: 800px; height: auto;">
+            <div class="bg-secondary card text-center" style="width: 800px; height: auto; margin-bottom: auto;">
               <div class="card-body text-white">
                 <h1 class="display-4 py-3"> Ship Status </h1>
-                <img src="../static/images/spaceship.png" alt="person 2" style="width: 250px; height: 250px">
+                <img src="../static/images/spaceship.png" alt="person 2" style="width: 250px; height: auto">
                 <hr>
                 <div class="text-white lead py-3" >Health</div>
                 <div class="progress pb-4">
@@ -49,7 +49,7 @@
             <div class="bg-success card text-center" style="width: 800px; height: auto;">
               <div class="card-body text-white">
                 <h1 class="display-4 py-3"> Inventory </h1>
-                <img src="../static/images/backpack.png" alt="person 3" style="width: 250px; height: 250px">
+                <img src="../static/images/backpack.png" alt="person 3" style="width: 250px; height: auto; margin-bottom: auto;">
                 <hr>
                 <div class="text-white lead py-3" >Bandages</div>
                 <div class="progress pb-4">
@@ -91,7 +91,7 @@
 {% endblock %}
 
 {% block buttons %}
-<div class="container d-block justify-content-center">
+<div class="container d-block justify-content-center mb-4">
   <div class="row">
     <div class="col-sm"></div>
     <div class="col-sm">
@@ -103,3 +103,5 @@
   </div>
 </div>
 {% endblock %}
+
+{% block footer %}{% endblock %}
