@@ -237,7 +237,7 @@ def shop():
 
 @app.route("/return", methods=['GET','POST'])
 def returnToGame():
-    return render_template("gamescreen.html", day = str(userJourney[0]))
+    return render_template("gamescreen.html", day = str(userJourney[0]), crewStatus = crewStatus)
 
 ############################################################################
 ############################################################################

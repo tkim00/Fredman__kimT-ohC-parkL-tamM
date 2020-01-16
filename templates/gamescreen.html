@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block modal %}
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,7 +11,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <b>Person {{personsick}} is {{hungerorhurt}}</b>
         <h5>Check Crew Status</h5>
       </div>
       <div class="modal-footer">
@@ -21,7 +20,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -45,7 +44,7 @@
 {% block screen %}
 <div class="container rounded bg-dark mt-5 text-center" style = "width: 550px;">
   <div class="display-3" id="daynum"></div>
-  <img src="../static/images/placeholder.jpg"  class="rounded mx-auto d-block" alt="Responsive image" style="width: 500px; height: 300px; padding-top: 30px; padding-bottom: 30px;">
+  <img src="../static/images/travel.png"  class="rounded mx-auto d-block" alt="Responsive image" style="width: 500px; height: 300px; padding-top: 30px; padding-bottom: 30px;">
 </div>
 {% endblock %}
 
@@ -97,6 +96,12 @@
 {% block footer %}{% endblock %}
 
 {% block script %}
-<script src="javascript/method.js"></script>
+<script>
+  if({{crewStatus[2]}} < 50){
+    $('#exampleModal1').modal();
+  };
+  if({{crewStatus[3]}} < 50){
+    $('#exampleModal2').modal();
+  };
 </script>
 {% endblock %}
