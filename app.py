@@ -11,7 +11,7 @@ import random
 import DBMethods
 #from database import setupDB
 #import urllib.request as urlrequest
-#from urllib.request import urlopen, Request
+from urllib.request import urlopen, Request
 import json
 
 ##################################################################################
@@ -243,6 +243,31 @@ def game():
     global passedEncounter
 
     print("Day " + str(userJourney[0]))
+        #PLANET 0
+    if (userJourney[1] >= userJourney[2]):
+        print("PLANET 0")
+        return render_template("/planet")
+        userJourney[2] += 1000
+    #PLANET 1
+    if (userJourney[1] >= userJourney[3]):
+        print("PLANET 1")
+        return render_template("/planet")
+        userJourney[3] += 1000
+    #PLANET 2
+    if (userJourney[1] >= userJourney[4]):
+        print("PLANET 2")
+        return render_template("/planet")
+        userJourney[4] += 1000
+    #PLANET 3
+    if (userJourney[1] >= userJourney[5]):
+        print("PLANET 3")
+        return render_template("/planet")
+        userJourney[5] += 1000
+    #FINISH
+    if (userJourney[1] >= userJourney[6]):
+        print("Congratulations! You have finished the game")
+        return render_template("/fin")
+        #return endScreen()
 
         #return endScreen()
     ######################
@@ -263,6 +288,13 @@ def game():
     dayPasses()
     print(passedEncounter)
     return encounter()
+
+def planet1():
+    link = urlopen("https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=exoplanets&pl_name")
+    response = link.read()
+    #data = json.loads( response )
+    return response[0]
+
 
 # crewStatus
 #  food    speed  bandages
@@ -335,9 +367,6 @@ def changeSettings():
         if (response == 5): userSettings[1] = "Fast"
         return render_template("settings.html", settings = userSettings)
     return returnToGame()
-
-
-
 
 #STATUS MESSAGES IN crewStatus
 # HUNGER, HEALTH, Ship HEALTH
@@ -420,9 +449,8 @@ def dayPasses():
     return ("worked")
 
 
+print(planet1())
 
-#chooseYourDifficulty()
-
-if __name__ == "__main__":
-    app.debug = True
-    app.run()
+#if __name__ == "__main__":
+#    app.debug = True
+#    app.run()
