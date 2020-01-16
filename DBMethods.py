@@ -117,7 +117,7 @@ def getSituations():
 
 
 # TEST
-<<<<<<< HEAD
+
 signUp('bob', 'joe')
 #print checkLogin('admin', 'admin')
 #print getSituations()[0]
@@ -129,6 +129,4 @@ signUp('bob', 'joe')
 #                 print y[x][1]
 #                 x += 1
 #print getTableData('userStuff',hey)[0][0]
-=======
 print(getSituations()[0][0])
->>>>>>> ed1eceb1bdc5b6d3cccd86db0d8e8523c40dabd0
