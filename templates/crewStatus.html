@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "gamescreen.html" %}
 
 {% block screen %}
 <div class="container rounded bg-dark mt-5 text-center" style = "width: 550px;">
@@ -8,21 +8,17 @@
 {% endblock %}
 
 {% block text %}
-<div class="container bg-light text-center">
-  <p class="lead">
-    Crew Status:
-
-    Hunger: {{crewStat[0]}}<br>
-    Energy: {{crewStat[1]}}<br>
-    Health: {{crewStat[2]}}<br>
-    Ship Health: {{crewStat[3]}}<br><br>
-    {{crewMessages[0]}}<br>
-    {{crewMessages[1]}}<br>
-    {{crewMessages[2]}}<br>
-
-    <br> 0. Continue
-  </p>
-  </div>
+<div class="container bg-light text-center my-5">
+  <p class="lead">Crew Status:</p>
+  <p class="lead">Hunger: {{crewStat[0]}}</p>
+  <p class="lead">Energy: {{crewStat[1]}}</p>
+  <p class="lead">Health: {{crewStat[2]}}</p>
+  <p class="lead">Ship Health: {{crewStat[3]}}</p>
+  <p class="lead">{{crewMessages[0]}}</p>
+  <p class="lead">{{crewMessages[1]}}</p>
+  <p class="lead">{{crewMessages[2]}}</p>
+  <p class="lead">0. Continue</p>
+</div>
 
 {% endblock %}
 

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "gamescreen.html" %}
 
 
 
@@ -10,16 +10,13 @@
 {% endblock %}
 
 {% block text %}
-<div class="container bg-light text-center">
-  <p class="lead">
-    Settings: <br>
-    Food: {{settings[0]}} <br>
-    Speed: {{settings[1]}} <br><br>
-    0. Meager     1. Normal       2. Banquet <br>
-    3. Slow       4. Steady       5. Fast
-    <br>
-    <br> 6. Continue
-  </p>
+<div class="container bg-light text-center my-5">
+  <p class="lead">Settings: </p>
+  <p class="lead">Food: {{settings[0]}} </p>
+  <p class="lead">Speed: {{settings[1]}} </p>
+  <p class="lead">0. Meager     1. Normal       2. Banquet </p>
+  <p class="lead">3. Slow       4. Steady       5. Fast </p>
+  <p class="lead"> 6. Continue</p>
 </div>
 
 {% endblock %}

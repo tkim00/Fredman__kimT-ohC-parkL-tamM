@@ -1,46 +1,6 @@
-{% extends "base.html" %}
+{% extends "gamescreen.html" %}
 
-{% block modal %}
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Health Alert</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <b>Person {{personsick}} is {{hungerorhurt}}</b>
-        <h5>Check Crew Status</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ship Alert</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <b>Your Ship is Damaged</b>
-        <h5>Check Ship Status</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-{% endblock %}
 
 {% block screen %}
 <div class="container rounded bg-dark mt-5 text-center" style = "width: 550px;">
@@ -51,41 +11,6 @@
 
 {% block text %}
 Welcome to planet exo!
-{% endblock %}
-
-{% block type %}
-<div class="container">
-  <div class="row">
-    <div class="col-sm"></div>
-    <div class="col-sm">
-      <form action="/game" method="POST">
-        <div class="input-group mb-3" style="width: auto;">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">></span>
-          </div>
-          <input type="text" class="form-control" placeholder="Type Response" aria-label="response" aria-describedby="basic-addon1" name="input">
-        </div>
-        <button class="btn btn-sm btn-warning mt-3 mr-3" type="submit">Enter</button>
-      </form>
-    </div>
-    <div class="col-sm"></div>
-  </div>
-</div>
-
-{% endblock %}
-
-{% block buttons %}
-<div class="container mb-4">
-  <div class="row">
-    <div class="col-sm"></div>
-    <div class="col-sm">
-      <form action="/stats" method="GET">
-        <button class="btn btn-sm btn-warning mt-3 mr-3" type="submit">Status</button>
-      </form>
-    </div>
-    <div class="col-sm"></div>
-  </div>
-</div>
 {% endblock %}
 
 

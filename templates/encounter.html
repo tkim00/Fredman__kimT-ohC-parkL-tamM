@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "gamescreen.html" %}
 
 
 
@@ -10,12 +10,10 @@
 {% endblock %}
 
 {% block text %}
-<div class="container bg-light text-center">
-  <p class="lead">
-    Day {{day}} <br>
-    {{char}} {{result[1]}}<br><br>
-    0. Continue<br>
-  </p>
+<div class="container bg-light text-center my-5">
+  <p class="lead">Day {{day}} </p>
+  <p class="lead">{{char}} {{result[1]}}</p>
+  <p class="lead">0. Continue</p>
 </div>
 {% endblock %}
 

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "gamescreen.html" %}
 
 
 
@@ -10,19 +10,15 @@
 {% endblock %}
 
 {% block text %}
-<div class="container bg-light text-center">
-  <p class="lead">
-    Inventory:
-
-    Bandages: {{stat[0]}}<br>
-    Food: {{stat[1]}}<br>
-    Fuel: {{stat[2]}}<br>
-    Money: {{stat[3]}}<br>
-    Ship Parts: {{stat[4]}}<br>
-    Weapons: {{stat[5]}}<br>
-
-    <br> 0. Continue
-  </p>
+<div class="container bg-light text-center my-5">
+  <p class="lead">Inventory:</p>
+  <p class="lead">Bandages: {{stat[0]}}</p>
+  <p class="lead">Food: {{stat[1]}}</p>
+  <p class="lead">Fuel: {{stat[2]}}</p>
+  <p class="lead">Money: {{stat[3]}}</p>
+  <p class="lead">Ship Parts: {{stat[4]}}</p>
+  <p class="lead">Weapons: {{stat[5]}}</p>
+  <p class="lead">0. Continue</p>
 </div>
 
 {% endblock %}

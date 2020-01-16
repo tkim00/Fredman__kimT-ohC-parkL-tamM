@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "gamescreen.html" %}
 
 
 
@@ -10,23 +10,20 @@
 {% endblock %}
 
 {% block text %}
-<div class="container bg-light text-center">
-  <p class="lead">
-    0. Buy Ship Parts         1. Sell Ship Parts<br>
-    2. Buy Fuel               3. Sell Fuel<br>
-    4. Buy Food               5. Sell Food<br>
-    6. Buy Bandages           7. Sell Bandages<br>
-    8. Buy Weapons            9. Sell Weapons<br>
-    10. Continue<br>
-    {{message}}
-    <br>
-    Balance: {{stat[3]}} <br>
-    Ship parts: {{stat[4]}}<br>
-    Fuel: {{stat[2]}}<br>
-    Food: {{stat[1]}}<br>
-    Bandages: {{stat[0]}}<br>
-    Weapons: {{stat[5]}}<br>
-  </p>
+<div class="container bg-light text-center my-5">
+  <p class="lead">0. Buy Ship Parts         1. Sell Ship Parts</p>
+  <p class="lead">2. Buy Fuel               3. Sell Fuel</p>
+  <p class="lead">4. Buy Food               5. Sell Food</p>
+  <p class="lead">6. Buy Bandages           7. Sell Bandages</p>
+  <p class="lead">8. Buy Weapons            9. Sell Weapons</p>
+  <p class="lead">10. Continue</p>
+  <p class="lead">{{message}}</p>
+  <p class="lead">Balance: {{stat[3]}}</p>
+  <p class="lead">Ship parts: {{stat[4]}}</p>
+  <p class="lead">Fuel: {{stat[2]}}</p>
+  <p class="lead">Food: {{stat[1]}}</p>
+  <p class="lead">Bandages: {{stat[0]}}</p>
+  <p class="lead">Weapons: {{stat[5]}}</p>
 <div>
 {% endblock %}
 
