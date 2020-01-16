@@ -179,7 +179,7 @@ def shop():
 
     response = int(request.form['input'])
     if (response == 10):
-        return redirect(url_for("start"))
+        return redirect(url_for("returnToGame"))
     if (response % 2):
         #print("ODD NUMBER")
         if (response == 1): #SHIP PARTS
