@@ -345,6 +345,21 @@ def encounter():
     print("0. Continue")
     return render_template("encounter.html", day = userJourney[0], char = char, result = result)
 
+
+@app.route("/checkPlanet")
+def checkPlanet():
+    response = int(request.form["input"])
+    while (response != 0):
+        if (response == 1): return render_template("inventory.html", stat = userInventory)
+        if (response == 2): return render_template("crewStatus.html", crewStat = crewStatus, crewMessages = statusMessages)
+        if (response == 3): return render_template("settings.html", settings = userSettings)
+        if (response == 4): return render_template("shop.html", message = "Welcome to my shop!", stat = userInventory)
+        print("Day " + str(userJourney[0]))
+        print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings")
+        return render_template("planet.html")
+    return returnToGame()
+
+
 def planet():
     print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings\n4. Shop")
     response = askUser()
