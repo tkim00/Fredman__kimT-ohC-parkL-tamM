@@ -64,7 +64,7 @@ def main():
 
 @app.route("/start")
 def start():
-    return render_template('gamescreen.html')
+    return render_template('gamescreen.html', day = str(userJourney[0]))
 
 @app.route("/logout")
 def logout():
@@ -179,7 +179,7 @@ def shop():
 
     response = int(request.form['input'])
     if (response == 10):
-        return render_template("gamescreen.html", day = str(userJourney[0]))
+        return redirect(url_for("start"))
     if (response % 2):
         #print("ODD NUMBER")
         if (response == 1): #SHIP PARTS
