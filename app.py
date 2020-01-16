@@ -75,7 +75,7 @@ def logout():
 @app.route("/stats")
 def stats():
     if('username' in session and 'password' in session):
-        return render_template('stats.html')
+        return render_template('stats.html', crewStatus=crewStatus, userInventory=userInventory)
     return(redirect(url_for("login")))
 
 @app.route("/")
