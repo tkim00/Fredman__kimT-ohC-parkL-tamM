@@ -1,3 +1,10 @@
+parkL -- 2020-01-15 23:57
+Added 2 more methods to database methods python file
+- first method checks if given username & password are in database
+  - if not or if any error: return false
+  - if they match: return true
+- second method adds to database new username & password for signup
+
 parkL -- 2020-01-14 20:20
 Edited python file for database setup
 - removed need for a table
