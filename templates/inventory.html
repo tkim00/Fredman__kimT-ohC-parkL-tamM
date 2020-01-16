@@ -50,11 +50,17 @@
 {% endblock %}
 
 {% block text %}
-Day {{day}} <br>
-0. Continue <br>
-1. Inventory <br>
-2. Crew Status <br>
-3. Settings <br>
+Inventory:
+
+Bandages: {{stat[0]}}<br>
+Food: {{stat[1]}}<br>
+Fuel: {{stat[2]}}<br>
+Money: {{stat[3]}}<br>
+Ship Parts: {{stat[4]}}<br>
+Weapons: {{stat[5]}}<br>
+
+<br> 0. Continue
+
 {% endblock %}
 
 {% block type %}
@@ -62,7 +68,7 @@ Day {{day}} <br>
   <div class="row">
     <div class="col-sm"></div>
     <div class="col-sm">
-      <form action="/game" method="POST">
+      <form action="/return" method="POST">
         <div class="input-group mb-3" style="width: auto;">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">></span>
@@ -79,12 +85,12 @@ Day {{day}} <br>
 {% endblock %}
 
 {% block buttons %}
-<div class="container mb-4">
+<div class="container">
   <div class="row">
     <div class="col-sm"></div>
     <div class="col-sm">
       <form action="/stats" method="GET">
-        <button class="btn btn-sm btn-warning mt-3 mr-3" type="submit">Status</button>
+        <button class="btn btn-sm btn-warning mt-3 mr-3" type="submit">Crew Status</button>
       </form>
     </div>
     <div class="col-sm"></div>
@@ -92,6 +98,11 @@ Day {{day}} <br>
 </div>
 {% endblock %}
 
+{% block stats %}
+<div class="container bg-primary">
+
+</div>
+{% endblock %}
 
 {% block script %}
 <script src="javascript/method.js"></script>

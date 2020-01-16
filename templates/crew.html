@@ -50,11 +50,9 @@
 {% endblock %}
 
 {% block text %}
-Day {{day}} <br>
-0. Continue <br>
-1. Inventory <br>
-2. Crew Status <br>
-3. Settings <br>
+<div class = "container bg-info my-5" style="width: 550px;">
+  Choose your crew members: <br>
+</div>
 {% endblock %}
 
 {% block type %}
@@ -62,14 +60,29 @@ Day {{day}} <br>
   <div class="row">
     <div class="col-sm"></div>
     <div class="col-sm">
-      <form action="/game" method="POST">
+      <form action="/shop1" method="POST">
         <div class="input-group mb-3" style="width: auto;">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">></span>
           </div>
-          <input type="text" class="form-control" placeholder="Type Response" aria-label="response" aria-describedby="basic-addon1" name="input">
+          <input type="text" class="form-control" placeholder="Type Response" aria-label="response" aria-describedby="basic-addon1" name="input0">
         </div>
-        <button class="btn btn-sm btn-warning mt-3 mr-3" type="submit">Enter</button>
+
+        <div class="input-group mb-3" style="width: auto;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">></span>
+          </div>
+          <input type="text" class="form-control" placeholder="Type Response" aria-label="response" aria-describedby="basic-addon1" name="input1">
+        </div>
+
+        <div class="input-group mb-3" style="width: auto;">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">></span>
+          </div>
+          <input type="text" class="form-control" placeholder="Type Response" aria-label="response" aria-describedby="basic-addon1" name="input2">
+        </div>
+
+        <button class="btn btn-sm btn-warning mt-3 mr-3" type="Next Day">Enter</button>
       </form>
     </div>
     <div class="col-sm"></div>
@@ -79,19 +92,23 @@ Day {{day}} <br>
 {% endblock %}
 
 {% block buttons %}
-<div class="container mb-4">
+<div class="container">
   <div class="row">
     <div class="col-sm"></div>
     <div class="col-sm">
-      <form action="/stats" method="GET">
-        <button class="btn btn-sm btn-warning mt-3 mr-3" type="submit">Status</button>
+      <form action="/crewstats" method="GET">
+        <button class="btn btn-sm btn-warning mt-3 mr-3" type="submit">Crew Status</button>
+      </form>
+    </div>
+    <div class="col-sm">
+      <form action="/shipstats" method="GET">
+        <button class="btn btn-sm btn-warning mt-3 mr-3" type="submit">Ship Status</button>
       </form>
     </div>
     <div class="col-sm"></div>
   </div>
 </div>
 {% endblock %}
-
 
 {% block script %}
 <script src="javascript/method.js"></script>
