@@ -272,7 +272,7 @@ def game():
 def encounter():
     global crewStatus
     #determine which aspect
-    typeEncounter = random.randint(0,4)
+    typeEncounter = random.randint(0,3)
     #HUNGER
     if (typeEncounter == 0):
         if (crewStatus[0] >= 50):
