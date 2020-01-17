@@ -13,6 +13,7 @@ import DBMethods
 #import urllib.request as urlrequest
 from urllib.request import urlopen, Request
 import json
+import hubble
 
 ##################################################################################
 app = Flask(__name__)
@@ -120,7 +121,7 @@ def signup():
 @app.route("/startGame")
 def startGame():
     print("STARTGAME!!!")
-    return render_template("difficulty.html")
+    return render_template("difficulty.html", image=hubble.hubbleAPI())
 
 @app.route("/name", methods=['GET','POST'])
 def chooseYourDifficulty(): #Choose difficulty
@@ -139,7 +140,7 @@ def chooseYourDifficulty(): #Choose difficulty
     userData[0] = response
     print(userInventory)
     print(userData)
-    return render_template("name.html")
+    return render_template("name.html", image=hubble.hubbleAPI())
 
 @app.route("/crew", methods=['GET','POST'])
 def chooseYourName(): #Choose your character name
@@ -150,7 +151,7 @@ def chooseYourName(): #Choose your character name
     except:
         global userData
         userData[1] = response
-        return render_template("crew.html")
+        return render_template("crew.html", image=hubble.hubbleAPI())
         #return(redirect(url_for("chooseYourCrew")))
 
 @app.route("/shop1", methods=['GET','POST'])
@@ -162,7 +163,7 @@ def chooseYourCrew():
     userData[3] = crew1
     userData[4] = crew2
     return render_template("shop.html",
-        stat = userInventory)
+        stat = userInventory, image=hubble.hubbleAPI())
     #return(redirect(url_for("shop")))
 
 @app.route("/shop", methods=['GET','POST'])
@@ -190,29 +191,29 @@ def shop():
     if (response % 2):
         #print("ODD NUMBER")
         if (response == 1): #SHIP PARTS
-            if (userInventory[4] < 50): return render_template("shop.html", message = "Invalid request. Ship parts too low.",stat = userInventory)
+            if (userInventory[4] < 50): return render_template("shop.html", message = "Invalid request. Ship parts too low.",stat = userInventory, image=hubble.hubbleAPI())
             userInventory[3] += 50
             userInventory[4] -= 50
         if (response == 3): #FUEL
-            if (userInventory[2] < 50): return render_template("shop.html", message = "Invalid request. Fuel too low.", stat = userInventory)
+            if (userInventory[2] < 50): return render_template("shop.html", message = "Invalid request. Fuel too low.", stat = userInventory, image=hubble.hubbleAPI())
             userInventory[3] += 50
             userInventory[2] -= 50
         if (response == 5): #FOOD
-            if (userInventory[1] < 50): return render_template("shop.html", message = "Invalid request. Food too low.", stat = userInventory)
+            if (userInventory[1] < 50): return render_template("shop.html", message = "Invalid request. Food too low.", stat = userInventory, image=hubble.hubbleAPI())
             userInventory[3] += 50
             userInventory[1] -= 50
         if (response == 7): #Bandages
-            if (userInventory[0] < 50): return render_template("shop.html", message = "Invalid request. Bandages too low.", stat = userInventory)
+            if (userInventory[0] < 50): return render_template("shop.html", message = "Invalid request. Bandages too low.", stat = userInventory, image=hubble.hubbleAPI())
             userInventory[3] += 50
             userInventory[0] -= 50
         if (response == 9): #WEAPONS
-            if (userInventory[5] < 50): return render_template("shop.html", message = "Invalid request. Weapons too low.", stat = userInventory)
+            if (userInventory[5] < 50): return render_template("shop.html", message = "Invalid request. Weapons too low.", stat = userInventory, image=hubble.hubbleAPI())
             userInventory[3] += 50
             userInventory[5] -= 50
     else:
         #print("EVEN NUMBER")
         if (userInventory[3] < 50):
-            return render_template("shop.html", message = "Invalid request. Funds too low.", stat = userInventory)
+            return render_template("shop.html", message = "Invalid request. Funds too low.", stat = userInventory, image=hubble.hubbleAPI())
         if (response == 0): #SHIP PARTS
             userInventory[3] -= 50
             userInventory[4] += 50
@@ -231,13 +232,13 @@ def shop():
 
     #print(userInventory)
     return render_template("shop.html",
-        stat = userInventory)
+        stat = userInventory, image=hubble.hubbleAPI())
 
 
 
 @app.route("/return", methods=['GET','POST'])
 def returnToGame():
-    return render_template("gamescreen.html", day = str(userJourney[0]), crewStatus = crewStatus)
+    return render_template("gamescreen.html", day = str(userJourney[0]), crewStatus = crewStatus, image=hubble.hubbleAPI())
 
 ############################################################################
 ############################################################################
@@ -254,22 +255,22 @@ def game():
     if (userJourney[1] >= userJourney[2]):
         print("PLANET 0")
         userJourney[2] += 1000
-        return render_template("planet.html", name = "Gemini", src = "../static/images/planet0.jpg")
+        return render_template("planet.html", name = "Gemini", image=hubble.hubbleAPI())
     #PLANET 1
     if (userJourney[1] >= userJourney[3]):
         print("PLANET 1")
         userJourney[3] += 1000
-        return render_template("planet.html", name = "Soupy", src = "../static/images/planet1.jpg")
+        return render_template("planet.html", name = "Soupy", image=hubble.hubbleAPI())
     #PLANET 2
     if (userJourney[1] >= userJourney[4]):
         print("PLANET 2")
         userJourney[4] += 1000
-        return render_template("planet.html", name = "Vader", src = "../static/images/planet2.jpg")
+        return render_template("planet.html", name = "Vader", image=hubble.hubbleAPI())
     #PLANET 3
     if (userJourney[1] >= userJourney[5]):
         print("PLANET 3")
         userJourney[5] += 1000
-        return render_template("planet.html", name = "Termina", src = "../static/images/planet3.jpg")
+        return render_template("planet.html", name = "Termina", image=hubble.hubbleAPI())
     #FINISH
     if (userJourney[1] >= userJourney[6]):
         print("Congratulations! You have finished the game")
@@ -283,7 +284,7 @@ def game():
     #INVENTORY AND CREW STATUS
     response = int(request.form["input"])
     while (response != 0):
-        if (response == 1): return render_template("settings.html", settings = userSettings)
+        if (response == 1): return render_template("settings.html", settings = userSettings, image=hubble.hubbleAPI())
         print("Day " + str(userJourney[0]))
         print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings")
         return returnToGame()
@@ -341,17 +342,17 @@ def encounter():
 
     char = userData[random.randint(1,4)]
     print("0. Continue")
-    return render_template("encounter.html", day = userJourney[0], char = char, result = result)
+    return render_template("encounter.html", day = userJourney[0], char = char, result = result, image=hubble.hubbleAPI())
 
 
 @app.route("/checkPlanet")
 def checkPlanet():
     response = int(request.form["input"])
     while (response != 0):
-        if (response == 1): return render_template("inventory.html", stat = userInventory)
-        if (response == 2): return render_template("crewStatus.html", crewStat = crewStatus, crewMessages = statusMessages)
-        if (response == 3): return render_template("settings.html", settings = userSettings)
-        if (response == 4): return render_template("shop.html", message = "Welcome to my shop!", stat = userInventory)
+        if (response == 1): return render_template("inventory.html", stat = userInventory, image=hubble.hubbleAPI())
+        if (response == 2): return render_template("crewStatus.html", crewStat = crewStatus, crewMessages = statusMessages, image=hubble.hubbleAPI())
+        if (response == 3): return render_template("settings.html", settings = userSettings, image=hubble.hubbleAPI())
+        if (response == 4): return render_template("shop.html", message = "Welcome to my shop!", stat = userInventory, image=hubble.hubbleAPI())
         print("Day " + str(userJourney[0]))
         print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings")
         return render_template("planet.html")

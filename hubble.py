@@ -14,10 +14,10 @@ import DBMethods
 from urllib.request import urlopen, Request
 import json
 
-def nasaAPI():
-    link = urlopen("https://images-api.nasa.gov/search?q=planet")
+def hubbleAPI():
+    id = random.randint(0,1000)
+    link = urlopen("http://hubblesite.org/api/v3/image/{}".format(id))
     response = link.read()
     data = json.loads( response )
-    return data['collection']['items'][random.randint(0,100)]['links'][0]['href']
-
-print(nasaAPI())
+    print(data)
+    return data["image_files"][4]["file_url"]
