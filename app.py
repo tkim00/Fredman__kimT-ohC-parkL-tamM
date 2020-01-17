@@ -273,7 +273,7 @@ def game():
     #FINISH
     if (userJourney[1] >= userJourney[6]):
         print("Congratulations! You have finished the game")
-        return render_template("homescreen.html")
+        return render_template("fin.html")
         #return endScreen()
 
         #return endScreen()

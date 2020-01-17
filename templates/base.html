@@ -19,47 +19,51 @@
   {% endblock %}
 
   {% block header %}
-  <header class="header">
-      {% block logout %}
-      <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
-          <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
-        </div>
+    {% block logout %}
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <a class="nav-link" href="/logout">Logout <span class="sr-only">(current)</span></a>
       </div>
-      {% endblock %}
-      <nav class="navbar navbar-dark bg-dark">
-        <div class"navbar-brand"><p class="lead text-white">Space Trails</p></div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      </nav>
-  </header>
+    </div>
+    {% endblock %}
+    <nav class="navbar navbar-dark bg-dark">
+      <div class"navbar-brand"><p class="lead text-white">Space Trails</p></div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
   {% endblock %}
+
 
   {% block content %}
   <main>
-    {% block screen %} {% endblock %}
+    <sub>
+      <div class="container my-1">
+        <p class="lead">{{error}}</p>
+      </div>
+      {% block screen %} {% endblock %}
+    </sub>
+
+    <sub>
+      {% block text %}{% endblock %}
+    </sub>
+
+    <sub>
+      {% block type %}{% endblock %}
+    </sub>
+
+    <sub>
+      {% block buttons %}{% endblock %}
+    </sub>
   </main>
-
-  <sub>
-    {% block text %}{% endblock %}
-  </sub>
-
-  <sub>
-    {% block type %}{% endblock %}
-  </sub>
-
-  <sub>
-    {% block buttons %}{% endblock %}
-  </sub>
   {% endblock %}
 
 
   {% block footer %}
   <footer class="footer">
     <div class="container pt-3">
-      <p class="text-white my-0">Taejoon Kim | Connor Oh | Leia Park | Manfred Tan</p>
-      <p class="text-white my-0">Copyright &copy; 2020</p>
+      <p class="text-muted my-0">Tae Joon Kim | Connor Oh | Leia Park | Manfred Tan</p>
+      <p class="text-muted my-0">Copyright &copy; 2020</p>
     </div>
   </footer>
   {% endblock %}
