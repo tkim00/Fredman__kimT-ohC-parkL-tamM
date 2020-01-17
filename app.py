@@ -120,6 +120,8 @@ def signup():
 
 @app.route("/startGame")
 def startGame():
+    if('username' in session and 'password' in session):
+        return redirect(url_for("game") )
     print("STARTGAME!!!")
     # BANDAGES, FOOD, FUEL, MONEY, SHIP PARTS, WEAPONS
     #     0       1    2      3        4         5
