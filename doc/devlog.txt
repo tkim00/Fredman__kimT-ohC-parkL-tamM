@@ -1,8 +1,13 @@
+connorO -- 2020-01-16 23:28
+-Implemented Hubble API
+-Worked Out a few kinks with the html
+
 connorO -- 2020-01-16 07:32
 -Finished all of html
 -Successfully implemented bootstrap
 -Fixed login/register
 -Used Javascript for modals
+
 leiaP -- 2020-01-15 23:57
 Added 2 more methods to database methods python file
 - first method checks if given username & password are in database
