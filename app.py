@@ -374,10 +374,8 @@ def encounter():
 def checkPlanet():
     response = int(request.form["input"])
     while (response != 0):
-        if (response == 1): return render_template("inventory.html", stat = userInventory, image=hubble.hubbleAPI())
-        if (response == 2): return render_template("crewStatus.html", crewStat = crewStatus, crewMessages = statusMessages, image=hubble.hubbleAPI())
-        if (response == 3): return render_template("settings.html", settings = userSettings, image=hubble.hubbleAPI())
-        if (response == 4): return render_template("shop.html", message = "Welcome to my shop!", stat = userInventory, image=hubble.hubbleAPI())
+        if (response == 1): return render_template("settings.html", settings = userSettings, image=hubble.hubbleAPI())
+        if (response == 2): return render_template("shop.html", message = "Welcome to my shop!", stat = userInventory, image=hubble.hubbleAPI())
         print("Day " + str(userJourney[0]))
         print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings")
         return render_template("planet.html", image=hubble.hubbleAPI())
