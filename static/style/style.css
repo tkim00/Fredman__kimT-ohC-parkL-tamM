@@ -14,3 +14,18 @@ body {
   height: 110px;
   background-color: #f5f5f5;
 }
+
+.overlap
+{
+    position: relative;
+  
+}
+.overlap:after
+{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 5px;
+    left: 5px;
+}

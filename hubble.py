@@ -19,5 +19,5 @@ def hubbleAPI():
     link = urlopen("http://hubblesite.org/api/v3/image/{}".format(id))
     response = link.read()
     data = json.loads( response )
-    print(data)
-    return data["image_files"][4]["file_url"]
+    length = len(data["image_files"])
+    return data["image_files"][length - 1]["file_url"]
