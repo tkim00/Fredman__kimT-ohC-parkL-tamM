@@ -18,6 +18,7 @@ Taking inspiration primarily from Oregon Trail, this website is a text-based str
 #### APIs
 * [NASA Exoplanet Archive](https://docs.google.com/document/d/1J5PAzkRvPBrzud4jhXBX3yZZtMhlTx1KmLQezlLszEk/edit)
 * [Dice API](https://docs.google.com/document/d/1pvPPwTMcXs1OyTqh5QbucGXou4OOnOis5HjtIT90W5w/edit)
+* [Hubblesite API](https://docs.google.com/document/d/1Z4_4WwiBrJVqtMr4aCTWEjYDNGi9oYRgDa2TOB-Ffuw/edit)
 
 #### Launch codes
 To clone, use the https of this repository.
@@ -33,3 +34,5 @@ To run, you first make a python virtual environment and activate it.
 
 Then, run app.py and click on the url that displays on your terminal.
 `(<venv_name>)$ python3 app.py`
+
+[Video demo here](https://youtu.be/MDYIyKHwIsY)
