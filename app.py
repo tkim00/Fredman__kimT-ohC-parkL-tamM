@@ -386,7 +386,7 @@ def changeSettings():
         if (response == 3): userSettings[1] = "Slow"
         if (response == 4): userSettings[1] = "Steady"
         if (response == 5): userSettings[1] = "Fast"
-        return render_template("settings.html", settings = userSettings)
+        return render_template("settings.html", settings = userSettings, image=hubble.hubbleAPI())
     return returnToGame()
 
 #STATUS MESSAGES IN crewStatus
