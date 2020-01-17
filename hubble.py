@@ -20,4 +20,10 @@ def hubbleAPI():
     response = link.read()
     data = json.loads( response )
     length = len(data["image_files"])
-    return data["image_files"][length - 1]["file_url"]
+    image =  data["image_files"][length - 1]["file_url"]
+    image1 = image.split(".")
+    print(image1)
+    if(image1[len(image1) - 1] == "jpg"):
+        return image;
+    else:
+        return hubbleAPI()
