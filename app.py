@@ -370,7 +370,7 @@ def encounter():
     return render_template("encounter.html", day = userJourney[0], char = char, result = result, image=hubble.hubbleAPI())
 
 
-@app.route("/checkPlanet")
+@app.route("/checkPlanet", methods=['GET', 'POST'])
 def checkPlanet():
     response = int(request.form["input"])
     while (response != 0):
