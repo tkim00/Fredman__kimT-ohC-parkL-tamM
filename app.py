@@ -355,7 +355,7 @@ def checkPlanet():
         if (response == 4): return render_template("shop.html", message = "Welcome to my shop!", stat = userInventory, image=hubble.hubbleAPI())
         print("Day " + str(userJourney[0]))
         print("0. Continue\n1. Inventory\n2. Crew Status\n3. Settings")
-        return render_template("planet.html")
+        return render_template("planet.html", image=hubble.hubbleAPI())
     return returnToGame()
 
 
