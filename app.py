@@ -121,6 +121,31 @@ def signup():
 @app.route("/startGame")
 def startGame():
     print("STARTGAME!!!")
+    # BANDAGES, FOOD, FUEL, MONEY, SHIP PARTS, WEAPONS
+    #     0       1    2      3        4         5
+    userInventory = [200,200,200,1000,200,200]
+
+    # DIFFICULTY, NAME, CREW0, CREW1, CREW2,
+    #     0        1      2      3      4
+    userData = [0,"name","crew0","crew1","crew2"]
+
+    # USER SETTINGS
+    #  FOOD(TXT), SPEED(TXT), FOOD(LVL), SPEED(LVL)
+    #   0             1            2            3
+    userSettings = ["Normal","Steady", 1, 1]
+
+    # userJourney
+    #  DAY, TRAVELED, PLANET 1, PLANET 2, PLANET 3, PLANET 4, FINISH
+    #   0      1         2         3         4        5         6
+    userJourney = [0,0,40,100,150,225,300]
+
+    # crewStatus
+    #  food    speed  bandages
+    # HUNGER, ENERGY, HEALTH, SHIP HEALTH
+    #   0       1       2         3
+    crewStatus = [200, 100, 100, 100]
+
+    passedEncounter = True
     return render_template("difficulty.html", image=hubble.hubbleAPI())
 
 @app.route("/name", methods=['GET','POST'])
